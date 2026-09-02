@@ -1,7 +1,11 @@
 # Dependencies
+*.xml
 node_modules/
 .pnp/
 .pnp.js
+postgres-data/
+generated/
+backend/src/generated
 
 # Build outputs
 dist/
