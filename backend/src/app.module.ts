@@ -7,7 +7,7 @@ import { pinoConfigAsync } from './core/config/logger.config';
 import { ConfigModule } from '@nestjs/config';
 import { envConfig } from './core/config/env.config';
 import { HealthModule } from './modules/health/health.module';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
