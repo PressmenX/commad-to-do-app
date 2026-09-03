@@ -7,6 +7,7 @@ const envSchema = z.object({
     .default('development'),
   PORT: z.coerce.number().default(3000),
   DATABASE_URL: z.string().url(),
+  JWT_SECRET: z.string().min(1),
 });
 
 export const envConfig: ConfigModuleOptions = {
