@@ -2,7 +2,7 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { RegisterDto } from './dto/register.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import bcrypt from 'bcrypt';
-import { UserResponseDto } from './dto/user-response.dto';
+import { UserResponseDto } from '../../common/dto/user-response.dto';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()

@@ -1,0 +1,27 @@
+@url = http://localhost:3000
+
+###
+POST {{url}}/task
+Content-Type: application/json
+
+{
+  "name": "Design Database Schema for Tasks",
+  "details": "Add relations between User and Task models",
+  "isCompleted": false,
+  "priority": "MEDIUM"
+}
+
+###
+GET {{url}}/task
+
+###
+GET {{url}}/task/1
+
+###
+PATCH {{url}}/task/4
+Content-Type: application/json
+
+{
+   "isCompleted": true,
+   "priority": "LOW"
+}
