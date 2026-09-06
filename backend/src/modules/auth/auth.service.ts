@@ -3,10 +3,14 @@ import { RegisterDto } from './dto/register.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import bcrypt from 'bcrypt';
 import { UserResponseDto } from './dto/user-response.dto';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly jwtService: JwtService,
+  ) {}
   async register(dto: RegisterDto) {
     const user = await this.prisma.user.findUnique({
       where: { email: dto.email },
@@ -39,5 +43,9 @@ export class AuthService {
       email: user.email,
       name: user.name,
     };
+  }
+
+  async getToken(payload: { sub: string; email: string }) {
+    return await this.jwtService.signAsync(payload);
   }
 }

@@ -5,6 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { HttpErrorFilter } from './core/filters/http-error/http-error.filter';
 import { TransformInterceptor } from './core/interceptors/transform/transform.interceptor';
 import { ValidationPipe } from '@nestjs/common';
+import cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -12,6 +13,7 @@ async function bootstrap() {
   });
   const configService = app.get(ConfigService);
 
+  app.use(cookieParser());
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
