@@ -18,3 +18,6 @@ Content-Type: application/json
     "email": "budi.santoso@yahoo.com",
     "password": "Password123!"
 }
+
+###
+GET {{url}}/auth/profile

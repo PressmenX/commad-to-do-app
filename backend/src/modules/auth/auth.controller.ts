@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Res, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LocalAuthGuard } from '@/common/guard/local-auth.guard';
@@ -6,6 +6,7 @@ import { CurrentUser } from '@/common/decorators/current-user.decorator';
 import { UserResponseDto } from './dto/user-response.dto';
 import { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
+import { JwtAuthGuard } from '@/common/guard/jwt-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -40,12 +41,18 @@ export class AuthController {
       sameSite: 'lax',
       secure: isProduction,
       httpOnly: true,
-      maxAge: 0.5 * 60 * 1000,
+      maxAge: 0.5 * 60 * 1000, // @TEST : check token duration
     });
 
     return {
       message: 'Login successful',
       data: user,
     };
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('profile')
+  getProfile(@CurrentUser() user: UserResponseDto) {
+    return user;
   }
 }
