@@ -5,7 +5,16 @@ POST  {{url}}/auth/register
 Content-Type: application/json
 
 {
-    "name": "Andi Wijaya",
-    "email": "andi.wijaya@gmail.com",
-    "password": "supersecurepass"
-  }
+    "name": "Budi Santoso",
+    "email": "budi.santoso@yahoo.com",
+    "password": "Password123!"
+}
+
+###
+POST  {{url}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "budi.santoso@yahoo.com",
+    "password": "Password123!"
+}
