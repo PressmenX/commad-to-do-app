@@ -18,7 +18,10 @@ GET {{url}}/task
 GET {{url}}/task/1
 
 ###
-PATCH {{url}}/task/4
+DELETE {{url}}/task/5
+
+###
+PATCH {{url}}/task/5
 Content-Type: application/json
 
 {

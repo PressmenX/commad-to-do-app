@@ -34,7 +34,10 @@ export class TaskService {
     });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} task`;
+  async remove(id: number, userId: string) {
+    await this.findOne(id, userId);
+    return await this.prisma.task.delete({
+      where: { id },
+    });
   }
 }
