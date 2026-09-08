@@ -12,7 +12,7 @@ import { generateTaskKey } from './utils/generate-task-key.util';
 export class TaskService {
   constructor(private readonly prisma: PrismaService) {}
   async create(taskDto: CreateTaskDto, userId: string) {
-    const key = await generateTaskKey(this.prisma);
+    const key = await generateTaskKey(this.prisma, userId);
     return await this.prisma.task.create({
       data: { ...taskDto, userId, taskKey: key },
     });

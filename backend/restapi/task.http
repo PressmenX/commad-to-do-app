@@ -15,13 +15,13 @@ Content-Type: application/json
 GET {{url}}/task
 
 ###
-GET {{url}}/task/1
+GET {{url}}/task/473181db-cae2-490a-956e-8acc4c30fdd4
 
 ###
 DELETE {{url}}/task/5
 
 ###
-PATCH {{url}}/task/5
+PATCH {{url}}/task/473181db-cae2-490a-956e-8acc4c30fdd4
 Content-Type: application/json
 
 {

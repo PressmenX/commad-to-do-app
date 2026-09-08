@@ -8,6 +8,7 @@ const generateID = customAlphabet(ALPHABET, LENGTH);
 
 export const generateTaskKey = async (
   prisma: PrismaService,
+  userId: string,
 ): Promise<string> => {
   let key: string;
   let isExist: boolean;
@@ -15,7 +16,7 @@ export const generateTaskKey = async (
   do {
     key = generateID();
     const existingTask = await prisma.task.findFirst({
-      where: { taskKey: key },
+      where: { taskKey: key, userId },
     });
     isExist = existingTask !== null;
   } while (isExist);

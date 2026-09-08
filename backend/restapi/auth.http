@@ -5,8 +5,8 @@ POST  {{url}}/auth/register
 Content-Type: application/json
 
 {
-    "name": "Siti nur",
-    "email": "siti.nur@domain.co.id",
+    "name": "Siti Yanti",
+    "email": "siti.yanti@domain.co.id",
     "password": "Password123!"
 }
 
@@ -18,6 +18,7 @@ Content-Type: application/json
     "email": "siti.nur@domain.co.id",
     "password": "Password123!"
 }
+
 
 ###
 GET {{url}}/auth/profile
