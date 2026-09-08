@@ -46,6 +46,6 @@ export class AuthService {
   }
 
   async getToken(payload: { sub: string; email: string }) {
-    return await this.jwtService.signAsync(payload);
+    return await this.jwtService.signAsync(payload, { expiresIn: '15m' });
   }
 }

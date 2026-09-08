@@ -41,7 +41,7 @@ export class AuthController {
       sameSite: 'lax',
       secure: isProduction,
       httpOnly: true,
-      maxAge: 15 * 60 * 1000, // @TEST : check token duration
+      maxAge: 15 * 60 * 1000,
     });
 
     return {
