@@ -66,13 +66,13 @@ Ringkasan keputusan final dari sesi planning:
 - [x]  **Unit 2** — Update DTO: tambahkan `taskKey` ke `CreateTaskDto` (sebagai string wajib/opsional) beserta validasinya.
 - [x]  **Unit 3** — Refactor Controller & Service: ubah tipe data parameter `id` dari `number` menjadi `string` pada endpoint Get (One), Update, dan Delete.
 
-### Domain 2: Frontend — Local Core (Offline-First)
+### Domain 2: Frontend — Core UI & REST API)
 
-- [ ]  **Unit 19** — Service layer Dexie.js (fungsi CRUD ke IndexedDB: addTask, updateTask, deleteTask, getTasks)
-- [ ]  **Unit 20** — UI dasar Card View: render list task dari IndexedDB (belum ada styling final)
-- [ ]  **Unit 21** — Form tambah task (single) — Name, Details, Priority, Category
-- [ ]  **Unit 22** — Checkbox mark done + tombol delete per card
-- [ ]  **Unit 23** — Progress bar (hitung otomatis dari jumlah task selesai)
+- [ ] **Unit 19** — Service layer REST API (fungsi CRUD ke Backend: addTask, updateTask, deleteTask, getTasks)
+- [ ] **Unit 20** — UI dasar Card View: render list task dari REST API (belum ada styling final)
+- [ ] **Unit 21** — Form tambah task (single) — Name, Details, Priority, Category
+- [ ] **Unit 22** — Checkbox mark done + tombol delete per card , update/delete melalui REST API
+- [ ] **Unit 23** — Progress bar (hitung otomatis dari jumlah task selesai)
 
 ### Domain 3: Command System (Core Logic)
 
