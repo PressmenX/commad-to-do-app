@@ -55,7 +55,7 @@ Ringkasan keputusan final dari sesi planning:
 
 - **🛑[ Removed] Unit 18** — Endpoint sync (`POST /sync`) — terima batch perubahan dari client, terapkan last-write-wins berdasarkan timestamp
 
-### **🔄Realignment : Perubahan Task ID**
+### **🔄Adjustment - 1  : Perubahan Task ID**
 
 - **Details**
     - Task id → uuid
