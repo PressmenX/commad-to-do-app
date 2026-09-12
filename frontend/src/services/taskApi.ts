@@ -9,19 +9,28 @@ const api = axios.create({
 });
 
 export const taskApi = {
-  getTasks: () => {
-    return api.get("/task");
+  getTasks: async () => {
+    return (await api.get("/task")).data;
   },
 
-  addTask: (payload: unknown) => {
-    return api.post("/task", payload);
+  addTask: async (payload: unknown) => {
+    return (await api.post("/task", payload)).data;
   },
 
-  updateTask: (id: string, payload: unknown) => {
-    return api.patch(`/task/${id}`, payload);
+  updateTask: async (id: string, payload: unknown) => {
+    return (await api.patch(`/task/${id}`, payload)).data;
   },
 
-  deleteTask: (id: string) => {
-    return api.delete(`/task/${id}`);
+  deleteTask: async (id: string) => {
+    return (await api.delete(`/task/${id}`)).data;
+  },
+};
+
+export const authApi = {
+  login: async (email: string, pass: string) => {
+    return (await api.post("/auth/login", {
+      email,
+      password: pass,
+    })).data;
   },
 };

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { taskApi } from "./services/taskApi";
-import { ArrowRight, ListChecks, ListChecksIcon } from "lucide-react";
+import { authApi, taskApi } from "./services/taskApi";
+import { ArrowRight, ListChecks } from "lucide-react";
 
 export default function App() {
   useEffect(() => {
@@ -9,14 +9,6 @@ export default function App() {
         console.log("🔄 Memulai uji coba taskApi...");
         const tasks = await taskApi.getTasks();
         console.log("✅ 1. GET /task berhasil:", tasks);
-
-        const newTask = await taskApi.addTask({
-          name: "Task Uji Coba Unit 19",
-          details: "Dibuat dari pengujian taskApi.ts",
-          priority: "HIGH",
-          category: "Testing",
-        });
-        console.log("✅ 2. POST /task berhasil:", newTask);
       } catch (error: unknown) {
         console.error(
           "❌ Gagal menjalankan test taskApi:",
@@ -27,10 +19,21 @@ export default function App() {
 
     void testTaskApi();
   }, []);
+
+  const handleLogin = async () => {
+    try {
+      const result = await authApi.login(
+        "siti.nur@domain.co.id",
+        "Password123!",
+      );
+      console.log("Login sukses:", result);
+    } catch (error) {
+      console.error("Login gagal:", error);
+    }
+  };
   return (
     <main className="min-h-screen w-full flex flex-col items-center justify-center p-6 bg-base-100 text-base-content">
       <div className="max-w-2xl w-full flex flex-col items-center text-center gap-6">
-        
         <div className="p-4 rounded-2xl bg-primary/10 text-primary">
           <ListChecks className="w-12 h-12" />
         </div>
@@ -48,12 +51,15 @@ export default function App() {
           A personal to-do list built for speed — manage tasks with simple
           commands or tap-based actions, all stored locally on your device.
         </p>
-
-        <button className="btn btn-primary btn-lg px-8 mt-2 active:scale-95 transition-transform">
-          Get Started
-          <ArrowRight className="w-5 h-5 ml-1" />
-        </button>
-        
+        <div className="flex items-center gap-4 w-full max-w-sm mt-4 *:flex-1">
+          <button className="btn btn-outline btn-primary btn-lg active:scale-95 transition-transform" onClick={handleLogin}>
+            Login
+          </button>
+          <button className="btn btn-primary btn-lg active:scale-95 transition-transform">
+            Get Started
+            <ArrowRight className="w-5 h-5 ml-1" />
+          </button>
+        </div>
       </div>
     </main>
   );
