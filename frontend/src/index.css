@@ -7,5 +7,6 @@
 
 :root,
 [data-theme] {
-  --color-primary: #FF5733;
+  --color-primary: #f26637;
+  --color-neutral : #9b9da2;
 }
