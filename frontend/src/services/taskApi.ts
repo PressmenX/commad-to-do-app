@@ -1,12 +1,4 @@
-import axios from "axios";
-
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  withCredentials: true,
-});
+import { api } from "./api";
 
 export const taskApi = {
   getTasks: async () => {
@@ -26,11 +18,4 @@ export const taskApi = {
   },
 };
 
-export const authApi = {
-  login: async (email: string, pass: string) => {
-    return (await api.post("/auth/login", {
-      email,
-      password: pass,
-    })).data;
-  },
-};
+
