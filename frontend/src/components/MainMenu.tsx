@@ -46,7 +46,7 @@ export default function MainMenu() {
 
         <p className="text-base text-slate-600">
           Already have an account?{" "}
-          <span className="cursor-pointer">Log in</span>
+          <span className="cursor-pointer text-primary underline">Log in</span>
         </p>
       </div>
     </div>
