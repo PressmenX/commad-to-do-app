@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { taskApi } from "./services/taskApi";
-import MainMenu from "./components/MainMenu";
+import MainMenu from "./pages/MainMenu";
 
 export default function App() {
   useEffect(() => {
