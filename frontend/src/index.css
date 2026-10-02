@@ -1,16 +1,35 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: light --default, dark;
+  themes:
+    light --default,
+    dark;
 }
 
-@variant dark ([data-theme="dark"] &);
+@custom-variant dark (&:where([data-theme="dark"]));
 
 @theme {
-  --color-surface: #fafafa;
+  --color-surface: #ffffff;
 }
 
 :root,
 [data-theme] {
-  --color-primary: #f26637;
-  --color-neutral : #9b9da2;
+  --color-primary: #d73e1b;
+  --color-neutral: #9b9da2;
+}
+
+
+@utility btn-glass {
+  @apply rounded-xl transition-all duration-500
+         backdrop-blur-lg shadow-md shadow-black/10
+         bg-linear-to-br from-white/25 via-white/10 to-white/0
+         border border-white/30 border-t-white/60 border-l-white/50
+         hover:from-white/40 hover:via-white/20 hover:to-white/5 hover:border-white/40 hover:shadow-2xl;
+}
+
+@utility bg-glass {
+  @apply  rounded-xl
+         backdrop-blur-lg shadow-2xl shadow-black/10
+         bg-linear-to-br  via-white/10 to-white/0
+         border border-t-white/60 border-l-white/50
+         from-white/40  border-white/40
 }

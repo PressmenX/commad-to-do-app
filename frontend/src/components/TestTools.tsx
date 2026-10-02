@@ -8,23 +8,17 @@ export default function TestTools({ children }: React.PropsWithChildren) {
     <div className="fixed top-4 right-4 z-50 flex flex-col items-end gap-2">
     <button 
   onClick={() => setIsOpen(!isOpen)} 
-  className={`btn p-0 min-h-0 w-11 h-11 rounded-lg bg-transparent border transition-all duration-200 active:scale-95
-    ${isOpen 
-      ? 'border-base-content text-base-content bg-base-content/5' 
-      : 'border-base-content/20 text-base-content/60 hover:border-base-content/40 hover:text-base-content hover:bg-base-200/50'
-    }`}
+  className="px-2 py-2 text-white font-semibold btn-glass"
 > 
   <Wrench className="w-5 h-5" strokeWidth={1.5} /> 
 </button>
 
-
-
       {isOpen && (
-        <div className="bg-base-100 border border-base-content not-first:rounded-xl p-4 shadow-xl w-56 h-64 animate-in fade-in zoom-in-95 duration-150">
-          <h3 className="font-semibold text-sm mb-2 text-center">
+        <div className="w-56 min-h-64 p-4 bg-glass">
+          <h3 className="font-bold text-sm mb-2 text-center text-surface">
             Testing Tools
           </h3>
-          <div className="*:btn *:btn-outline *:btn-block *:btn-sm py-2">
+          <div className="*:btn *:text-primary *:btn-block *:btn-sm py-2 flex flex-col gap-2">
             {children}
           </div>
         </div>
