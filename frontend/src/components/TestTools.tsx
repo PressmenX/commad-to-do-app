@@ -8,9 +8,9 @@ export default function TestTools({ children }: React.PropsWithChildren) {
     <div className="fixed top-4 right-4 z-50 flex flex-col items-end gap-2">
     <button 
   onClick={() => setIsOpen(!isOpen)} 
-  className="px-2 py-2 text-white font-semibold btn-glass"
+  className={`px-2 py-2 text-white font-semibold transition-all duration-500 ${isOpen ? "border border-white bg-surface rounded-xl" : "btn-glass"}`}
 > 
-  <Wrench className="w-5 h-5" strokeWidth={1.5} /> 
+  <Wrench className={`w-5 h-5 ${isOpen ? "text-blue-500" : ""}`} strokeWidth={1.5} fill="currentColor"/> 
 </button>
 
       {isOpen && (
