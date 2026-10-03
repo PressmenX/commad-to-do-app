@@ -9,6 +9,12 @@
 
 @theme {
   --color-surface: #ffffff;
+  --background-image-brand-gradient: linear-gradient(
+    to bottom,
+    #f98a71,
+    #f44923,
+    #9e250a
+  );
 }
 
 :root,
@@ -16,7 +22,6 @@
   --color-primary: #d73e1b;
   --color-neutral: #9b9da2;
 }
-
 
 @utility btn-glass {
   @apply rounded-xl transition-all duration-500
@@ -27,9 +32,9 @@
 }
 
 @utility bg-glass {
-  @apply  rounded-xl
+  @apply rounded-xl
          backdrop-blur-lg shadow-2xl shadow-black/10
          bg-linear-to-br  via-white/10 to-white/0
          border border-t-white/60 border-l-white/50
-         from-white/40  border-white/40
+         from-white/40  border-white/40;
 }

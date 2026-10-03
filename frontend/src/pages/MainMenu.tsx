@@ -16,7 +16,7 @@ export default function MainMenu() {
   };
 
   return (
-    <div className="flex min-h-dvh w-full flex-col px-6 py-6 font-sans sm:py-8 bg-linear-to-b from-[#f98a71] via-[#f44923] to-[#9E250A]">
+    <div className="flex min-h-dvh w-full flex-col px-6 py-6 font-sans sm:py-8 bg-brand-gradient">
       <TestTools>
         <button onClick={handleLogin} className="">
           Login
