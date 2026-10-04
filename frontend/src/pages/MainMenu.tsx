@@ -1,6 +1,10 @@
 import { ArrowRight, Terminal } from "lucide-react";
 import { authApi } from "../services/authApi";
 import TestTools from "../components/TestTools";
+import { generateSeedTask } from "../services/seed-data";
+import { taskApi } from "../services/taskApi";
+import type { ICreateTask } from "..";
+import { ConsoleDisplay } from "../components/ConsoleDisplay";
 
 export default function MainMenu() {
   const handleLogin = async () => {
@@ -15,17 +19,29 @@ export default function MainMenu() {
     }
   };
 
+  const handleAddTask = async () => {
+  try {
+    const newTask: ICreateTask = generateSeedTask();
+
+    const result = await taskApi.addTask(newTask);
+    console.log("Tambah task sukses:", result);
+  } catch (error) {
+    console.error("Tambah task gagal:", error);
+  }
+};
+
   return (
     <div className="flex min-h-dvh w-full flex-col px-6 py-6 font-sans sm:py-8 bg-brand-gradient">
       <TestTools>
         <button onClick={handleLogin} className="">
           Login
         </button>
-        <button>Add Task</button>
+        <button onClick={handleAddTask}>Add Task</button>
         <button>Update Task</button>
         <button>Get Task</button>
         <button>Remove Task</button>
       </TestTools>
+      <ConsoleDisplay/>
 
       <div className="flex flex-1 flex-col items-center justify-center">
         <h1 className="text-3xl  text-surface font-bold mb-5 ">
