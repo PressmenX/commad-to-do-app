@@ -4,7 +4,6 @@ import TestTools from "../components/TestTools";
 import { generateSeedTask } from "../services/seed-data";
 import { taskApi } from "../services/taskApi";
 import type { ICreateTask } from "..";
-import { ConsoleDisplay } from "../components/ConsoleDisplay";
 
 export default function MainMenu() {
   const handleLogin = async () => {
@@ -13,9 +12,9 @@ export default function MainMenu() {
         "siti.nur@domain.co.id",
         "Password123!",
       );
-      console.log("Login sukses:", result);
+      console.log("Login success:", result);
     } catch (error) {
-      console.error("Login gagal:", error);
+      console.error("Login failed:", error);
     }
   };
 
@@ -24,9 +23,18 @@ export default function MainMenu() {
     const newTask: ICreateTask = generateSeedTask();
 
     const result = await taskApi.addTask(newTask);
-    console.log("Tambah task sukses:", result);
+    console.log("POST /task success:", result);
   } catch (error) {
-    console.error("Tambah task gagal:", error);
+    console.error("POST /task failed:", error);
+  }
+};
+
+  const handleGetTask = async () => {
+  try {
+    const result = await taskApi.getTasks();
+    console.log("GET /task success:", result);
+  } catch (error) {
+    console.error("GET /task failed:", error);
   }
 };
 
@@ -36,12 +44,11 @@ export default function MainMenu() {
         <button onClick={handleLogin} className="">
           Login
         </button>
+        <button onClick={handleGetTask}>Get Task</button>
         <button onClick={handleAddTask}>Add Task</button>
         <button>Update Task</button>
-        <button>Get Task</button>
         <button>Remove Task</button>
       </TestTools>
-      <ConsoleDisplay/>
 
       <div className="flex flex-1 flex-col items-center justify-center">
         <h1 className="text-3xl  text-surface font-bold mb-5 ">
