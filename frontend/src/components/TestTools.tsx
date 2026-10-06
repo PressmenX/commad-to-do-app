@@ -37,7 +37,7 @@ export default function TestTools({ children }: React.PropsWithChildren) {
                 />
               </label>
             </div>
-            <div className="*:btn *:text-primary *:btn-block *:btn-sm py-2 flex flex-col gap-2">
+            <div className="[&>button]:btn [&>button]:text-primary [&>button]:btn-block [&>button]:btn-sm py-2 flex flex-col gap-2">
               {children}
             </div>
           </div>

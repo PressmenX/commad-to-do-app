@@ -4,6 +4,8 @@ import TestTools from "../components/TestTools";
 import { generateSeedTask } from "../services/seed-data";
 import { taskApi } from "../services/taskApi";
 import type { ICreateTask } from "..";
+import ButtonWithId from "../components/ButtonWithId";
+
 
 export default function MainMenu() {
   const handleLogin = async () => {
@@ -38,6 +40,25 @@ export default function MainMenu() {
     }
   };
 
+  const handleUpdateTask = async (id: string) => {
+    try {
+      const task: ICreateTask = generateSeedTask();
+      const result = await taskApi.updateTask(id, task);
+      console.log("PATCH /task success:", result);
+    } catch (error) {
+      console.error("PATCH /task failed:", error);
+    }
+  };
+
+  const handleDeleteTask = async (id: string) => {
+    try {
+      const result = await taskApi.deleteTask(id);
+      console.log("DELETE /task success:", result);
+    } catch (error) {
+      console.error("DELETE /task failed:", error);
+    }
+  };
+
   return (
     <div className="flex min-h-dvh w-full flex-col px-6 py-6 font-sans sm:py-8 bg-brand-gradient">
       {import.meta.env.MODE === "development" && (
@@ -47,8 +68,8 @@ export default function MainMenu() {
           </button>
           <button onClick={handleGetTask}>Get Task</button>
           <button onClick={handleAddTask}>Add Task</button>
-          <button>Update Task</button>
-          <button>Remove Task</button>
+          <ButtonWithId label="Update Task" onAction={handleUpdateTask} />
+          <ButtonWithId label="Remove Task" onAction={handleDeleteTask} />
         </TestTools>
       )}
 
