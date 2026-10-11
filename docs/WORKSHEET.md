@@ -35,7 +35,8 @@ Ringkasan keputusan final dari sesi planning:
 - [x]  **Unit 7** — Setup linting/formatting (ESLint, Prettier) untuk backend
 - [x]  **Unit 8** — Inisialisasi project Vite + React + TypeScript
 - [x]  **Unit 9** — Setup Tailwind CSS + DaisyUI, konfigurasi tema dark mode sesuai referensi visual
-- [x]  **Unit 10** — Setup Dexie.js, definisikan schema IndexedDB (Task table)
+
+- [ ]    ~~**Unit 10** — Setup Dexie.js, definisikan schema IndexedDB (Task table)~~
 - [x]  **Unit 11** — Setup linting/formatting (ESLint, Prettier) untuk frontend
 - [x]  **Unit 12** — Struktur folder frontend (components/hooks/services/types)
 
@@ -68,7 +69,7 @@ Ringkasan keputusan final dari sesi planning:
 
 ### Domain 2: Frontend — Core UI & REST API)
 
-- [ ] **Unit 19** — Service layer REST API (fungsi CRUD ke Backend: addTask, updateTask, deleteTask, getTasks)
+- [x] **Unit 19** — Service layer REST API (fungsi CRUD ke Backend: addTask, updateTask, deleteTask, getTasks)
 - [ ] **Unit 20** — UI dasar Card View: render list task dari REST API (belum ada styling final)
 - [ ] **Unit 21** — Form tambah task (single) — Name, Details, Priority, Category
 - [ ] **Unit 22** — Checkbox mark done + tombol delete per card , update/delete melalui REST API
