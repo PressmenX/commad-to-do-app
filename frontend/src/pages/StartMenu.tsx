@@ -5,6 +5,7 @@ import { generateSeedTask } from "../services/seed-data";
 import { taskApi } from "../services/taskApi";
 import type { ICreateTask } from "..";
 import ButtonWithId from "../components/ButtonWithId";
+import { Link } from "react-router";
 
 export default function StartMenu() {
   const handleLogin = async () => {
@@ -89,10 +90,12 @@ export default function StartMenu() {
       </div>
 
       <div className="w-72  flex flex-col items-center gap-6 pb-2 mx-auto">
-        <button className="btn btn-block bg-surface text-primary rounded-full text-lg font-semibold h-12 min-h-12 flex items-center justify-center group transition-all duration-300  hover:bg-gray-50 active:bg-gray-100 active:scale-[0.98] border-0  hover:shadow-[0_0_24px_4px_rgba(255,255,255,0.4)]">
-          Get Started
-          <ArrowRight className="w-5 h-5 ml-1 transition-transform duration-300 group-hover:translate-x-4" />
-        </button>
+        <Link to="/main" className="w-full">
+          <button className="btn btn-block bg-surface text-primary rounded-full text-lg font-semibold h-12 min-h-12 flex items-center justify-center group transition-all duration-300  hover:bg-gray-50 active:bg-gray-100 active:scale-[0.98] border-0  hover:shadow-[0_0_24px_4px_rgba(255,255,255,0.4)]">
+            Get Started
+            <ArrowRight className="w-5 h-5 ml-1 transition-transform duration-300 group-hover:translate-x-4" />
+          </button>
+        </Link>
         <button className="btn btn-block btn-outline rounded-full  h-12  min-h-12 text-white font-semibold text-lg border-white hover:bg-white hover:text-primary hover:border-white transition-all duration-300 active:scale-[0.98] hover:shadow-[0_0_24px_4px_rgba(255,255,255,0.4)] ">
           Log in
         </button>
