@@ -4,7 +4,7 @@ import { ConsoleDisplay } from "./ConsoleDisplay";
 
 export default function TestTools({ children }: React.PropsWithChildren) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isConsoleOpen, setConsoleIsOpen] = useState(true);
+  const [isConsoleOpen, setConsoleIsOpen] = useState(false);
 
 
   return (

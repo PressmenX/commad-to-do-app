@@ -6,14 +6,10 @@ import { taskApi } from "../services/taskApi";
 import type { ICreateTask } from "..";
 import ButtonWithId from "../components/ButtonWithId";
 
-
-export default function MainMenu() {
+export default function StartMenu() {
   const handleLogin = async () => {
     try {
-      const res = await authApi.login(
-        "siti.nur@domain.co.id",
-        "Password123!",
-      );
+      const res = await authApi.login("siti.nur@domain.co.id", "Password123!");
       console.log("Login success:", res);
     } catch (error) {
       console.error("Login failed:", error);
