@@ -1,9 +1,9 @@
-import type { ICreateTask } from "..";
+import type { ICreateTask, ITask } from "..";
 import { api } from "./api";
 
 export const taskApi = {
   getTasks: async () => {
-    return (await api.get("/task")).data;
+    return (await api.get("/task")).data.result as ITask[];
   },
 
   addTask: async (payload: ICreateTask) => {

@@ -31,7 +31,7 @@ export default function StartMenu() {
   const handleGetTask = async () => {
     try {
       const result = await taskApi.getTasks();
-      console.log("GET /task success:", result.result);
+      console.log("GET /task success:", result);
     } catch (error) {
       console.error("GET /task failed:", error);
     }

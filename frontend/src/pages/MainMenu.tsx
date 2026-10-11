@@ -1,7 +1,9 @@
+import TaskList from "../components/TaskList";
+
 export default function MainMenu() {
   return (
-    <>
-      <h1>Hello World</h1>
-    </>
+    <div className=" min-h-dvh">
+      <TaskList/>
+    </div>
   );
 }

@@ -14,3 +14,16 @@ export interface ICreateTask {
   priority?: TaskPriority;
   category?: string;
 }
+
+export interface ITask {
+  id: string;
+  taskKey: string;
+  name: string;
+  details: string | null;
+  isCompleted: boolean;
+  priority: TaskPriority;
+  category: string | null;
+  userId: string;
+  createdAt: string;
+  updatedAt: string;
+}
