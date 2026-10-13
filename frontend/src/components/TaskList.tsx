@@ -14,12 +14,13 @@ export default function TaskList() {
   })
 
   return (
-    <>
+    <div>
+      <h2 className="text-xl font-bold mt-8 mx-8">Task list</h2>
       <ul className="card flex p-4 gap-2">
         {tasks?.map(task =>  (
           <TaskItem task={task}/>
         ))}
       </ul>
-    </>
+    </div>
   );
 }
