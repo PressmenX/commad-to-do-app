@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { taskApi } from "../services/taskApi";
-import TaskItem from "./TaskItem";
+import TaskCard from "./TaskCard";
 import { FileQuestion, XCircle } from "lucide-react";
 
 export default function TaskList() {
@@ -60,11 +60,13 @@ export default function TaskList() {
         </div>
       )}
 
-      {!isLoading && !isError &&  <ul className="card flex p-4 gap-2">
-        {tasks?.map(task => (
-          <TaskItem key={task.id} task={task} />
-        ))}
-      </ul>}
+      {!isLoading && !isError && (
+        <ul className="card flex p-4 gap-2">
+          {tasks?.map((task) => (
+            <TaskCard key={task.id} task={task} />
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

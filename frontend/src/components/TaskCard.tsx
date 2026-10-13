@@ -1,11 +1,11 @@
 import { Flag } from "lucide-react";
 import type { ITask } from "..";
 
-interface TaskItemProps {
+interface TaskCardProps {
   task: ITask;
 }
 
-export default function TaskItem({ task }: TaskItemProps) {
+export default function TaskCard({ task }: TaskCardProps) {
   const priorityBadgeStyles = {
     LOW: "badge badge-soft badge-success bg-success/20",
     MEDIUM: "badge badge-soft badge-warning bg-warning/20",
@@ -40,8 +40,11 @@ export default function TaskItem({ task }: TaskItemProps) {
         </p>
         <div className="flex gap-2">
           {task.priority !== "NONE" && (
-            <span className={`${priorityBadgeStyles[task.priority]} badge-sm capitalize`}>
-               <Flag fill="currentColor" size={14}/>{task.priority.toLowerCase()}
+            <span
+              className={`${priorityBadgeStyles[task.priority]} badge-sm capitalize`}
+            >
+              <Flag fill="currentColor" size={14} />
+              {task.priority.toLowerCase()}
             </span>
           )}
           {task.category && (
