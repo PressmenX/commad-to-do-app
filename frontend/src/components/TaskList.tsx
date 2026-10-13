@@ -1,7 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { taskApi } from "../services/taskApi";
 import TaskCard from "./TaskCard";
-import { FileQuestion, XCircle } from "lucide-react";
+import { FileQuestion, List, Rows3, Table, XCircle } from "lucide-react";
+import { useState } from "react";
+
+type ViewMode = "card" | "list" | "table";
 
 export default function TaskList() {
   const getTasks = async () => {
@@ -19,9 +22,36 @@ export default function TaskList() {
     queryFn: getTasks,
   });
 
+  const [currentViewMode, setViewMode] = useState<ViewMode>("card");
+
   return (
     <div className="flex min-h-80 flex-col">
-      <h2 className="text-xl font-bold mt-14 mx-8">Task list</h2>
+      <div className="flex items-center justify-between gap-4 p-4 mb-4  border-b border-base-content/20">
+        <h2 className="text-xl font-bold tracking-tight text-base-content">
+          Task list
+        </h2>
+
+        <div className="join bg-base-200 p-0.5 rounded-lg">
+          <button
+            className="btn btn-xs btn-ghost join-item gap-1 text-base-content/70 hover:text-base-content"
+            aria-label="Compact view"
+          >
+            <Rows3 size={14} />
+          </button>
+          <button
+            className="btn btn-xs btn-ghost join-item gap-1 text-base-content/70 hover:text-base-content"
+            aria-label="List view"
+          >
+            <List size={14} />
+          </button>
+          <button
+            className="btn btn-xs btn-ghost join-item gap-1 text-base-content/70 hover:text-base-content"
+            aria-label="Table view"
+          >
+            <Table size={14} />
+          </button>
+        </div>
+      </div>
 
       {isLoading && (
         <div className="flex flex-1 flex-col items-center justify-center pointer-events-none p-8 gap-3 text-base-content/60">
