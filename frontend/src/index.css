@@ -19,7 +19,7 @@
 
 :root,
 [data-theme] {
-  --color-primary: #d73e1b;
+  --color-primary: rgb(247, 116, 86);
   --color-neutral: #9b9da2;
 }
 
