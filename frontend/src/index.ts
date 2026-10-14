@@ -27,3 +27,8 @@ export interface ITask {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface TaskProps {
+  tasks: ITask[];
+  priorityBadgeStyles: Record<Exclude<TaskPriority, typeof TaskPriority.NONE>, string>;
+}

@@ -13,7 +13,7 @@ export default function TaskList() {
   };
 
   const {
-    data: tasks,
+    data: tasks = [],
     isLoading,
     isError,
     error,
@@ -23,6 +23,13 @@ export default function TaskList() {
   });
 
   const [currentViewMode, setViewMode] = useState<ViewMode>("card");
+
+   const priorityBadgeStyles = {
+    LOW: "badge badge-soft badge-success bg-success/20",
+    MEDIUM: "badge badge-soft badge-warning bg-warning/20",
+    HIGH: "badge badge-soft badge-error bg-error/20",
+  };
+
 
   return (
     <div className="flex min-h-80 flex-col">
@@ -107,11 +114,7 @@ export default function TaskList() {
 
       {!isLoading && !isError && (
         <div>
-          {currentViewMode === "card" && (<ul className="card flex p-4 gap-2">
-            {tasks?.map((task) => (
-              <TaskCard key={task.id} task={task} />
-            ))}
-          </ul>)}
+          {currentViewMode === "card" && (<TaskCard tasks={tasks} priorityBadgeStyles={priorityBadgeStyles}/>)}
         </div>
       )}
     </div>
