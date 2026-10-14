@@ -33,9 +33,9 @@ export default function TaskCard({ tasks }: TaskProps) {
               </h3>
               <span className="text-base-content/50">#{task.taskKey}</span>
             </div>
-            <p className="line-clamp-2 text-base-content/80 text-xs">
+            {task.details && <p className="line-clamp-2 text-base-content/80 text-xs">
               {task.details}
-            </p>
+            </p>}
             <div className="flex gap-2">
               {task.priority !== "NONE" && (
                 <span

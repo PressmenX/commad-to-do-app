@@ -9,11 +9,11 @@ export default function TaskItem({ tasks }: TaskProps) {
   };
 
   return (
-    <ul className="flex flex-col mx-4 p-4 border border-base-content/20 rounded-2xl">
-      {tasks.map((task: ITask) => (
+    <ul className="flex flex-col mx-4 p-4 gap-2 border-2 border-base-300 shadow-md rounded-2xl">
+      {tasks.map((task: ITask, index) => (
         <li
           key={task.id}
-          className="py-1 flex items-center justify-between gap-3 bg-base-100"
+          className={`py-2 flex items-center justify-between gap-3 bg-base-100 border-base-content/15 ${index === tasks.length-1 ? "" : "border-b"}`}
         >
           <div className="flex items-center gap-3">
             <input

@@ -4,7 +4,7 @@ import TaskCard from "./TaskCard";
 import { FileQuestion, List, Rows3, Table, XCircle } from "lucide-react";
 import { useState } from "react";
 import TaskItem from "./TaskItem";
-import TaskRow from "./TaskRow";
+import TaskTable from "./TaskTable";
 
 type ViewMode = "card" | "list" | "table";
 
@@ -113,7 +113,7 @@ export default function TaskList() {
 
           {currentViewMode === "list" && <TaskItem tasks={tasks} />}
 
-          {currentViewMode === "table" && (<TaskRow tasks={tasks}/>)}
+          {currentViewMode === "table" && <TaskTable tasks={tasks} />}
         </div>
       )}
     </div>
