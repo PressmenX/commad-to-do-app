@@ -1,18 +1,24 @@
-import { Flag } from "lucide-react";
+import { FlagTriangleRight } from "lucide-react";
 import type { ITask, TaskProps } from "..";
 
 export default function TaskItem({ tasks }: TaskProps) {
+   const priorityFlagStyles = {
+    LOW: "text-success",
+    MEDIUM: "text-warning",
+    HIGH: "text-error",
+  };
+
   return (
-    <ul className="flex flex-col gap-2">
+    <ul className="flex flex-col mx-4 p-4 border border-base-content/20 rounded-2xl">
       {tasks.map((task: ITask) => (
         <li
           key={task.id}
-          className="p-3 rounded-xl border border-base-content/20 flex items-center justify-between gap-3 bg-base-100"
+          className="py-1 flex items-center justify-between gap-3 bg-base-100"
         >
-          <div className="flex items-center gap-3 min-w-0">
+          <div className="flex items-center gap-3">
             <input
               type="checkbox"
-              className="checkbox checkbox-sm checked:checkbox-success"
+              className="checkbox checkbox-sm checked:checkbox-success text-white"
               checked={task.isCompleted}
               readOnly
             />
@@ -27,15 +33,9 @@ export default function TaskItem({ tasks }: TaskProps) {
           <div className="flex items-center gap-2 shrink-0">
             {task.priority !== "NONE" && (
               <span
-                className={`badge-sm capitalize ${
-                  task.priority === "LOW"
-                    ? "badge-success"
-                    : task.priority === "MEDIUM"
-                      ? "badge-warning"
-                      : "badge-error"
-                }`}
+                className={`${priorityFlagStyles[task.priority]}`}
               >
-                <Flag fill="currentColor" size={14} />
+                <FlagTriangleRight fill="currentColor" size={14} />
               </span>
             )}
             <span className="text-xs font-mono text-base-content/50">

@@ -1,4 +1,4 @@
-import { Flag } from "lucide-react";
+import { FlagTriangleRight } from "lucide-react";
 import type { TaskProps } from "..";
 
 export default function TaskCard({ tasks }: TaskProps) {
@@ -41,7 +41,7 @@ export default function TaskCard({ tasks }: TaskProps) {
                 <span
                   className={`${priorityBadgeStyles[task.priority]} badge-sm capitalize`}
                 >
-                  <Flag fill="currentColor" size={14} />
+                  <FlagTriangleRight fill="currentColor" size={12} />
                   {task.priority.toLowerCase()}
                 </span>
               )}
