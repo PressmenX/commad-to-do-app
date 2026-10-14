@@ -31,21 +31,36 @@ export default function TaskList() {
           Task list
         </h2>
 
-        <div className="join bg-base-200 p-0.5 rounded-lg">
+        <div className="join bg-base-200 p-0.5 rounded-lg border border-base-content/20">
           <button
-            className="btn btn-xs btn-ghost join-item gap-1 text-base-content/70 hover:text-base-content"
-            aria-label="Compact view"
+            onClick={() => setViewMode("card")}
+            className={`btn btn-xs join-item gap-1 ${
+              currentViewMode === "card"
+                ? "btn-primary text-white"
+                : "btn-ghost text-base-content/70 hover:text-base-content"
+            }`}
+            aria-label="Card view"
           >
             <Rows3 size={14} />
           </button>
           <button
-            className="btn btn-xs btn-ghost join-item gap-1 text-base-content/70 hover:text-base-content"
+            onClick={() => setViewMode("list")}
+            className={`btn btn-xs join-item gap-1 ${
+              currentViewMode === "list"
+                ? "btn-primary text-white"
+                : "btn-ghost text-base-content/70 hover:text-base-content"
+            }`}
             aria-label="List view"
           >
             <List size={14} />
           </button>
           <button
-            className="btn btn-xs btn-ghost join-item gap-1 text-base-content/70 hover:text-base-content"
+            onClick={() => setViewMode("table")}
+            className={`btn btn-xs join-item gap-1 ${
+              currentViewMode === "table"
+                ? "btn-primary text-white"
+                : "btn-ghost text-base-content/70 hover:text-base-content"
+            }`}
             aria-label="Table view"
           >
             <Table size={14} />
@@ -91,11 +106,13 @@ export default function TaskList() {
       )}
 
       {!isLoading && !isError && (
-        <ul className="card flex p-4 gap-2">
-          {tasks?.map((task) => (
-            <TaskCard key={task.id} task={task} />
-          ))}
-        </ul>
+        <div>
+          {currentViewMode === "card" && (<ul className="card flex p-4 gap-2">
+            {tasks?.map((task) => (
+              <TaskCard key={task.id} task={task} />
+            ))}
+          </ul>)}
+        </div>
       )}
     </div>
   );
