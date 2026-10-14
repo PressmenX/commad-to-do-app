@@ -3,6 +3,7 @@ import { taskApi } from "../services/taskApi";
 import TaskCard from "./TaskCard";
 import { FileQuestion, List, Rows3, Table, XCircle } from "lucide-react";
 import { useState } from "react";
+import TaskItem from "./TaskItem";
 
 type ViewMode = "card" | "list" | "table";
 
@@ -23,13 +24,6 @@ export default function TaskList() {
   });
 
   const [currentViewMode, setViewMode] = useState<ViewMode>("card");
-
-   const priorityBadgeStyles = {
-    LOW: "badge badge-soft badge-success bg-success/20",
-    MEDIUM: "badge badge-soft badge-warning bg-warning/20",
-    HIGH: "badge badge-soft badge-error bg-error/20",
-  };
-
 
   return (
     <div className="flex min-h-80 flex-col">
@@ -114,7 +108,9 @@ export default function TaskList() {
 
       {!isLoading && !isError && (
         <div>
-          {currentViewMode === "card" && (<TaskCard tasks={tasks} priorityBadgeStyles={priorityBadgeStyles}/>)}
+          {currentViewMode === "card" && <TaskCard tasks={tasks} />}
+
+          {currentViewMode === "list" && <TaskItem tasks={tasks} />}
         </div>
       )}
     </div>

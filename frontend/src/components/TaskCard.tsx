@@ -1,7 +1,13 @@
 import { Flag } from "lucide-react";
 import type { TaskProps } from "..";
 
-export default function TaskCard({ tasks, priorityBadgeStyles }: TaskProps) {
+export default function TaskCard({ tasks }: TaskProps) {
+  const priorityBadgeStyles = {
+    LOW: "badge badge-soft badge-success bg-success/20",
+    MEDIUM: "badge badge-soft badge-warning bg-warning/20",
+    HIGH: "badge badge-soft badge-error bg-error/20",
+  };
+
   return (
     <ul className="card flex p-4 gap-2">
       {tasks?.map((task) => (

@@ -1,6 +1,7 @@
+import { Flag } from "lucide-react";
 import type { ITask, TaskProps } from "..";
 
-export default function TaskItem({tasks, priorityBadgeStyles}: TaskProps) {
+export default function TaskItem({ tasks }: TaskProps) {
   return (
     <ul className="flex flex-col gap-2">
       {tasks.map((task: ITask) => (
@@ -26,9 +27,15 @@ export default function TaskItem({tasks, priorityBadgeStyles}: TaskProps) {
           <div className="flex items-center gap-2 shrink-0">
             {task.priority !== "NONE" && (
               <span
-                className={`${priorityBadgeStyles[task.priority]} badge-xs px-2`}
+                className={`badge-sm capitalize ${
+                  task.priority === "LOW"
+                    ? "badge-success"
+                    : task.priority === "MEDIUM"
+                      ? "badge-warning"
+                      : "badge-error"
+                }`}
               >
-                {task.priority.toLowerCase()}
+                <Flag fill="currentColor" size={14} />
               </span>
             )}
             <span className="text-xs font-mono text-base-content/50">

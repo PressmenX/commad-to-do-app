@@ -30,5 +30,4 @@ export interface ITask {
 
 export interface TaskProps {
   tasks: ITask[];
-  priorityBadgeStyles: Record<Exclude<TaskPriority, typeof TaskPriority.NONE>, string>;
 }
