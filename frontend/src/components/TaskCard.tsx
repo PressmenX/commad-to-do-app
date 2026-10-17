@@ -19,6 +19,7 @@ export default function TaskCard({ tasks }: TaskProps) {
             type="checkbox"
             className="checkbox bg-base-content/10 text-white checked:checkbox-success checked:bg-success"
             checked={task.isCompleted}
+            readOnly
           />
           <div className="w-full flex flex-col gap-2">
             <div className="flex justify-between">
