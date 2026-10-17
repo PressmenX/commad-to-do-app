@@ -70,7 +70,7 @@ Ringkasan keputusan final dari sesi planning:
 ### Domain 2: Frontend — Core UI & REST API)
 
 - [x] **Unit 19** — Service layer REST API (fungsi CRUD ke Backend: addTask, updateTask, deleteTask, getTasks)
-- [ ] **Unit 20** — UI dasar Card View: render list task dari REST API (belum ada styling final)
+- [x] **Unit 20** — UI dasar Card View: render list task dari REST API (belum ada styling final)
 - [ ] **Unit 21** — Form tambah task (single) — Name, Details, Priority, Category
 - [ ] **Unit 22** — Checkbox mark done + tombol delete per card , update/delete melalui REST API
 - [ ] **Unit 23** — Progress bar (hitung otomatis dari jumlah task selesai)

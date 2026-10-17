@@ -107,7 +107,7 @@ export default function TaskList() {
         </div>
       )}
 
-      {!isLoading && !isError && (
+      {!isLoading && !isError && tasks.length > 0 && (
         <div>
           {currentViewMode === "card" && <TaskCard tasks={tasks} />}
 
