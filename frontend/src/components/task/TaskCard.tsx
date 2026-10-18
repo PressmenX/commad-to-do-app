@@ -1,5 +1,5 @@
 import { FlagTriangleRight } from "lucide-react";
-import type { TaskProps } from "..";
+import type { TaskProps } from "../..";
 
 export default function TaskCard({ tasks }: TaskProps) {
   const priorityBadgeStyles = {

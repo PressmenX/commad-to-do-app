@@ -1,4 +1,4 @@
-import type { ITask, TaskProps } from "..";
+import type { ITask, TaskProps } from "../..";
 
 export default function TaskTable({ tasks }: TaskProps) {
   const priorityStyles = {
@@ -24,12 +24,24 @@ export default function TaskTable({ tasks }: TaskProps) {
             <th className="w-12 border border-base-300 bg-base-200 px-3 py-2">
               <input type="checkbox" className="checkbox checkbox-sm" />
             </th>
-            <th className="whitespace-nowrap border border-base-300 bg-base-200 px-3 py-2">Key</th>
-            <th className="border border-base-300 bg-base-200 px-3 py-2">Task Name</th>
-            <th className="border border-base-300 bg-base-200 px-3 py-2">Details</th>
-            <th className="whitespace-nowrap border border-base-300 bg-base-200 px-3 py-2">Priority</th>
-            <th className="whitespace-nowrap border border-base-300 bg-base-200 px-3 py-2">Category</th>
-            <th className="whitespace-nowrap border border-base-300 bg-base-200 px-3 py-2">Status</th>
+            <th className="whitespace-nowrap border border-base-300 bg-base-200 px-3 py-2">
+              Key
+            </th>
+            <th className="border border-base-300 bg-base-200 px-3 py-2">
+              Task Name
+            </th>
+            <th className="border border-base-300 bg-base-200 px-3 py-2">
+              Details
+            </th>
+            <th className="whitespace-nowrap border border-base-300 bg-base-200 px-3 py-2">
+              Priority
+            </th>
+            <th className="whitespace-nowrap border border-base-300 bg-base-200 px-3 py-2">
+              Category
+            </th>
+            <th className="whitespace-nowrap border border-base-300 bg-base-200 px-3 py-2">
+              Status
+            </th>
           </tr>
         </thead>
         <tbody>

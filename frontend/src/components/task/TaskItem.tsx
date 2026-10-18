@@ -1,5 +1,5 @@
 import { FlagTriangleRight } from "lucide-react";
-import type { ITask, TaskProps } from "..";
+import type { ITask, TaskProps } from "../..";
 
 export default function TaskItem({ tasks }: TaskProps) {
    const priorityFlagStyles = {

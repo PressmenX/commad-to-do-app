@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { taskApi } from "../services/taskApi";
+import { taskApi } from "../../services/taskApi";
 import TaskCard from "./TaskCard";
 import { FileQuestion, List, Rows3, Table, XCircle } from "lucide-react";
 import { useState } from "react";

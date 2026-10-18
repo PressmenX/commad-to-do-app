@@ -21,6 +21,8 @@
 [data-theme] {
   --color-primary: rgb(247, 116, 86);
   --color-neutral: #9b9da2;
+  --color-error: #ef4444;
+  --color-error-content: #ffffff;
 }
 
 @utility btn-glass {
