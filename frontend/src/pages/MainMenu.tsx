@@ -1,6 +1,8 @@
 import { Link } from "react-router";
 import TaskList from "../components/TaskList";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Plus } from "lucide-react";
+import AddTaskModal from "../components/AddTaskModal";
+import NiceModal from "@ebay/nice-modal-react";
 
 export default function MainMenu() {
   return (
@@ -11,6 +13,13 @@ export default function MainMenu() {
                 </button>
               </Link>
       <TaskList/>
+      <button
+        onClick={() => NiceModal.show(AddTaskModal)}
+        className="btn btn-primary btn-circle btn-lg fixed bottom-6 right-6 shadow-xl z-50 text-white"
+        aria-label="Add Task"
+      >
+        <Plus size={24} />
+      </button>
     </div>
   );
 }
