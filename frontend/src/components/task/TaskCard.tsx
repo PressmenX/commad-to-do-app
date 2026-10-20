@@ -1,7 +1,9 @@
 import { FlagTriangleRight } from "lucide-react";
 import type { TaskProps } from "../..";
+import { useToggleTask } from "../../hooks/useToggleTask";
 
 export default function TaskCard({ tasks }: TaskProps) {
+  const { toggleTask } = useToggleTask();
   const priorityBadgeStyles = {
     LOW: "badge badge-soft badge-success bg-success/20",
     MEDIUM: "badge badge-soft badge-warning bg-warning/20",
@@ -19,7 +21,7 @@ export default function TaskCard({ tasks }: TaskProps) {
             type="checkbox"
             className="checkbox bg-base-content/10 text-white checked:checkbox-success checked:bg-success"
             checked={task.isCompleted}
-            readOnly
+            onChange={() => toggleTask(task)}
           />
           <div className="w-full flex flex-col gap-2">
             <div className="flex justify-between">
@@ -34,9 +36,11 @@ export default function TaskCard({ tasks }: TaskProps) {
               </h3>
               <span className="text-base-content/50">#{task.taskKey}</span>
             </div>
-            {task.details && <p className="line-clamp-2 text-base-content/80 text-xs">
-              {task.details}
-            </p>}
+            {task.details && (
+              <p className="line-clamp-2 text-base-content/80 text-xs">
+                {task.details}
+              </p>
+            )}
             <div className="flex gap-2">
               {task.priority !== "NONE" && (
                 <span

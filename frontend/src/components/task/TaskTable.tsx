@@ -1,6 +1,9 @@
 import type { ITask, TaskProps } from "../..";
+import { useToggleTask } from "../../hooks/useToggleTask";
 
 export default function TaskTable({ tasks }: TaskProps) {
+  const { toggleTask } = useToggleTask();
+
   const priorityStyles = {
     LOW: "text-success",
     MEDIUM: "text-warning",
@@ -52,7 +55,7 @@ export default function TaskTable({ tasks }: TaskProps) {
                   type="checkbox"
                   className="checkbox checkbox-sm checked:checkbox-success text-white"
                   checked={task.isCompleted}
-                  readOnly
+                  onChange={() => toggleTask(task)}
                 />
               </td>
               <td className="border border-base-300 px-3 py-2 align-middle font-mono text-xs text-base-content/50 whitespace-nowrap">

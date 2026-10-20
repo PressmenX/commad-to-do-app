@@ -1,7 +1,9 @@
 import { FlagTriangleRight } from "lucide-react";
 import type { ITask, TaskProps } from "../..";
+import { useToggleTask } from "../../hooks/useToggleTask";
 
 export default function TaskItem({ tasks }: TaskProps) {
+    const { toggleTask } = useToggleTask();
    const priorityFlagStyles = {
     LOW: "text-success",
     MEDIUM: "text-warning",
@@ -20,10 +22,10 @@ export default function TaskItem({ tasks }: TaskProps) {
               type="checkbox"
               className="checkbox checkbox-sm checked:checkbox-success text-white"
               checked={task.isCompleted}
-              readOnly
+            onChange={() => toggleTask(task)}
             />
             <span
-              className={`text-sm font-medium truncate ${
+              className={`text-sm font-medium max-w-40 truncate ${
                 task.isCompleted ? "line-through text-base-content/50" : ""
               }`}
             >
