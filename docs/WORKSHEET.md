@@ -71,8 +71,8 @@ Ringkasan keputusan final dari sesi planning:
 
 - [x] **Unit 19** — Service layer REST API (fungsi CRUD ke Backend: addTask, updateTask, deleteTask, getTasks)
 - [x] **Unit 20** — UI dasar Card View: render list task dari REST API (belum ada styling final)
-- [ ] **Unit 21** — Form tambah task (single) — Name, Details, Priority, Category
-- [ ] **Unit 22** — Checkbox mark done + tombol delete per card , update/delete melalui REST API
+- [x] **Unit 21** — Form tambah task (single) — Name, Details, Priority, Category
+- [x] **Unit 22** — Checkbox mark done + tombol delete per card , update/delete melalui REST API
 - [ ] **Unit 23** — Progress bar (hitung otomatis dari jumlah task selesai)
 
 ### Domain 3: Command System (Core Logic)
@@ -88,7 +88,7 @@ Ringkasan keputusan final dari sesi planning:
 ### Domain 4: Views & Interaksi
 
 - [ ]  **Unit 31** — Table View — render task dalam format tabel sesuai referensi visual
-- [ ]  **Unit 32** — Toggle Card View ↔ Table View, simpan preferensi (localStorage/state)
+- [ ]  **Unit 32** — Toggle Card View ↔ Table View,simpan preferensi
 - [ ]  **Unit 33** — Fitur sort (ID, Priority, Category, Status, Alfabetis) — ascending/descending
 - [ ]  **Unit 34** — Multi-select checkbox + floating bulk action bar (Mark Done Selected, Delete Selected)
 - [ ]  **Unit 35** — Integrasi Fuse.js — auto-suggestion saat mengetik di form/command `ADD`
