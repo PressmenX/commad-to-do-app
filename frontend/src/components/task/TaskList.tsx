@@ -1,8 +1,13 @@
 import TaskCard from "./TaskCard";
+
 import { FileQuestion, List, Rows3, Table, XCircle } from "lucide-react";
+
 import { useState } from "react";
+
 import TaskItem from "./TaskItem";
+
 import TaskTable from "./TaskTable";
+
 import { useGetTask } from "../../hooks/useGetTask";
 
 type ViewMode = "card" | "list" | "table";
@@ -10,8 +15,11 @@ type ViewMode = "card" | "list" | "table";
 export default function TaskList() {
   const {
     data: tasks = [],
+
     isLoading,
+
     isError,
+
     error,
   } = useGetTask();
 
@@ -19,9 +27,9 @@ export default function TaskList() {
 
   return (
     <div className="flex min-h-80 flex-col">
-      <div className="flex items-center justify-between gap-4 p-4 mb-4  border-b border-base-content/20">
-        <h2 className="text-xl font-bold tracking-tight text-base-content">
-          Task list
+      <div className="flex items-center justify-between py-2 mx-4">
+        <h2 className="text-xs font-bold text-base-content/60 uppercase tracking-wider">
+          To Do List
         </h2>
 
         <div className="join bg-base-200 p-0.5 rounded-lg border border-base-content/20">
@@ -36,6 +44,7 @@ export default function TaskList() {
           >
             <Rows3 size={14} />
           </button>
+
           <button
             onClick={() => setViewMode("list")}
             className={`btn btn-xs join-item gap-1 ${
@@ -47,6 +56,7 @@ export default function TaskList() {
           >
             <List size={14} />
           </button>
+
           <button
             onClick={() => setViewMode("table")}
             className={`btn btn-xs join-item gap-1 ${
@@ -66,6 +76,7 @@ export default function TaskList() {
           <div className="bg-base-200 p-3 rounded-full flex items-center justify-center">
             <span className="loading loading-spinner loading-xl text-primary"></span>
           </div>
+
           <p className="text-sm font-medium">Loading tasks...</p>
         </div>
       )}
@@ -75,8 +86,10 @@ export default function TaskList() {
           <div className="bg-error/10 p-3 rounded-full">
             <XCircle size={32} strokeWidth={1.5} />
           </div>
+
           <div className="flex flex-col items-center text-center gap-1">
             <p className="text-lg font-semibold">Failed to load tasks</p>
+
             <p className="text-sm opacity-80 max-w-xs">
               {error?.message ||
                 "An unexpected error occurred. Please try again later."}
@@ -90,7 +103,9 @@ export default function TaskList() {
           <div className="bg-base-200 p-3 rounded-full">
             <FileQuestion size={32} strokeWidth={1.5} />
           </div>
+
           <p className="text-lg font-medium text-center">No tasks found</p>
+
           <p className="text-sm text-base-content/40 text-center max-w-xs">
             You don't have any tasks right now. Create a new task to get
             started!
