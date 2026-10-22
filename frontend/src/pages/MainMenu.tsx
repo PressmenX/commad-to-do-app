@@ -4,12 +4,14 @@ import { ArrowLeft, Plus } from "lucide-react";
 import AddTaskModal from "../components/task/AddTaskModal";
 import NiceModal from "@ebay/nice-modal-react";
 import { useAuth } from "../context/AuthContext";
+import UserProgressCard from "../components/task/UserProgressCard";
 
 export default function MainMenu() {
   const { isLoggedIn } = useAuth();
 
   return (
     <div className=" min-h-dvh">
+      <UserProgressCard />
       <Link to="/">
         <button className="btn btn-primary btn-sm btn-circle fixed top-4 left-4 z-999 opacity-30 transition hover:opacity-100 active:scale-95 active:opacity-100">
           <ArrowLeft />

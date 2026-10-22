@@ -1,28 +1,19 @@
-import { useQuery } from "@tanstack/react-query";
-import { taskApi } from "../../services/taskApi";
 import TaskCard from "./TaskCard";
 import { FileQuestion, List, Rows3, Table, XCircle } from "lucide-react";
 import { useState } from "react";
 import TaskItem from "./TaskItem";
 import TaskTable from "./TaskTable";
+import { useGetTask } from "../../hooks/useGetTask";
 
 type ViewMode = "card" | "list" | "table";
 
 export default function TaskList() {
-  const getTasks = async () => {
-    const res = await taskApi.getTasks();
-    return res;
-  };
-
   const {
     data: tasks = [],
     isLoading,
     isError,
     error,
-  } = useQuery({
-    queryKey: ["tasks"],
-    queryFn: getTasks,
-  });
+  } = useGetTask();
 
   const [currentViewMode, setViewMode] = useState<ViewMode>("card");
 
