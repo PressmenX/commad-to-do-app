@@ -87,23 +87,23 @@ Ringkasan keputusan final dari sesi planning:
 
 ### Domain 4: Views & Interaksi
 
-- [ ]  **Unit 31** — Table View — render task dalam format tabel sesuai referensi visual
+- [x]  **Unit 31** — Table View — render task dalam format tabel sesuai referensi visual
 - [ ]  **Unit 32** — Toggle Card View ↔ Table View,simpan preferensi
-- [ ]  **Unit 33** — Fitur sort (ID, Priority, Category, Status, Alfabetis) — ascending/descending
+- [ ]  **Unit 33** — Fitur sort (Priority, Alfabetis, createdAt, updatedAt) — ascending/descending
 - [ ]  **Unit 34** — Multi-select checkbox + floating bulk action bar (Mark Done Selected, Delete Selected)
-- [ ]  **Unit 35** — Integrasi Fuse.js — auto-suggestion saat mengetik di form/command `ADD`
+- [ ]  🛑 Removed **Unit 35** — Integrasi Fuse.js — auto-suggestion saat mengetik di form/command `ADD`
 
 ### Domain 5: Data Portability
 
-- **Unit 36** — Fitur Export — command `EXPORT` + tombol, download seluruh data jadi `.json`
-- **Unit 37** — Fitur Import — command `IMPORT` + tombol, pilih file `.json`, validasi & load ke IndexedDB
+- **Unit 36** — Fitur Export —  `EXPORT` + tombol, download seluruh data jadi `.json`
+- **Unit 37** — Fitur Import —  `IMPORT` + tombol, pilih file `.json`
 
 ### Domain 6: Sync & Auth (Jembatan Frontend-Backend)
 
 - **Unit 38** — UI Login/Register sederhana, simpan JWT token (localStorage/secure storage)
-- **Unit 39** — Service sync di frontend — push perubahan lokal ke backend saat online
-- **Unit 40** — Pull data dari backend saat login/reconnect, merge ke IndexedDB (last-write-wins)
-- **Unit 41** — Indikator status sync di UI (online/offline/syncing) — kecil, tidak mengganggu
+- **🛑 Removed Unit 39** — Service sync di frontend — push perubahan lokal ke backend saat online
+- **🛑 Removed Unit 40** — Pull data dari backend saat login/reconnect, merge ke IndexedDB (last-write-wins)
+- **🛑 Removed Unit 41** — Indikator status sync di UI (online/offline/syncing) — kecil, tidak mengganggu
 
 ### Domain 7: PWA
 
@@ -120,7 +120,7 @@ Ringkasan keputusan final dari sesi planning:
 - [ ]  **Unit 45** — Checklist regresi manual: jalankan ulang semua Definition of Done per fitur (dari Fase Planning) secara end-to-end
 - [ ]  **Unit 46** — Test skenario offline: matikan koneksi, pastikan semua interaksi (CRUD, command, sort, undo) tetap berfungsi
 - [ ]  **Unit 47** — Test skenario sync: edit task di 2 "device" (2 browser/incognito), pastikan last-write-wins bekerja sesuai ekspektasi saat online kembali
-- [ ]  **Unit 48** — Test edge case command: ID di luar batas, format command salah, range dengan ID yang sudah dihapus di tengah
+- [ ] 🛑 Removed **Unit 48** — Test edge case command: ID di luar batas, format command salah, range dengan ID yang sudah dihapus di tengah
 - [ ]  **Unit 49** — Test Export → Import round-trip: pastikan data tidak berubah/hilang
 - [ ]  **Unit 50** — Self code-review: cek console error/warning, tipe TypeScript ketat (tidak ada `any` yang tidak perlu), struktur folder konsisten
 
