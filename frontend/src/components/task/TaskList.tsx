@@ -1,29 +1,18 @@
 import TaskCard from "./TaskCard";
-
 import { FileQuestion, List, Rows3, Table, XCircle } from "lucide-react";
-
-import { useState } from "react";
-
 import TaskItem from "./TaskItem";
-
 import TaskTable from "./TaskTable";
-
 import { useGetTask } from "../../hooks/useGetTask";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 type ViewMode = "card" | "list" | "table";
+const VALID_MODES: ViewMode[] = ["card", "list", "table"];
 
 export default function TaskList() {
-  const {
-    data: tasks = [],
+  const { data: tasks = [], isLoading, isError, error } = useGetTask();
 
-    isLoading,
-
-    isError,
-
-    error,
-  } = useGetTask();
-
-  const [currentViewMode, setViewMode] = useState<ViewMode>("card");
+  const [savedMode, setViewMode] = useLocalStorage<ViewMode>("task_view_mode", "card");
+  const currentViewMode = VALID_MODES.includes(savedMode) ? savedMode : "card";
 
   return (
     <div className="flex min-h-80 flex-col">
