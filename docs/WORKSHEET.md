@@ -73,9 +73,9 @@ Ringkasan keputusan final dari sesi planning:
 - [x] **Unit 20** — UI dasar Card View: render list task dari REST API (belum ada styling final)
 - [x] **Unit 21** — Form tambah task (single) — Name, Details, Priority, Category
 - [x] **Unit 22** — Checkbox mark done + tombol delete per card , update/delete melalui REST API
-- [ ] **Unit 23** — Progress bar (hitung otomatis dari jumlah task selesai)
+- [x] **Unit 23** — Progress bar (hitung otomatis dari jumlah task selesai)
 
-### Domain 3: Command System (Core Logic)
+### [ SKIPPED ] Domain 3: Command System (Core Logic)
 
 - [ ]  **Unit 24** — Arsitektur command parser: tokenizer, struktur command registry yang extensible (biar command baru gampang ditambah)
 - [ ]  **Unit 25** — Command dasar single-ID: `MD #id`, `DEL #id`, `MKDEL #id`

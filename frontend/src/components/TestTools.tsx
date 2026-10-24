@@ -1,11 +1,62 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Wrench } from "lucide-react";
 import { ConsoleDisplay } from "./ConsoleDisplay";
+import { authApi } from "../services/authApi";
+import { generateSeedTask } from "../services/seed-data";
+import { taskApi } from "../services/taskApi";
+import type { ICreateTask } from "..";
+import ButtonWithId from "./ButtonWithId";
 
-export default function TestTools({ children }: React.PropsWithChildren) {
+export default function TestTools() {
   const [isOpen, setIsOpen] = useState(false);
   const [isConsoleOpen, setConsoleIsOpen] = useState(false);
 
+  const handleLogin = async () => {
+    try {
+      const res = await authApi.login("siti.nur@domain.co.id", "Password123!");
+      console.log("Login success:", res);
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
+
+  const handleAddTask = async () => {
+    try {
+      const newTask: ICreateTask = generateSeedTask();
+      const result = await taskApi.addTask(newTask);
+      console.log("POST /task success:", result);
+    } catch (error) {
+      console.error("POST /task failed:", error);
+    }
+  };
+
+  const handleGetTask = async () => {
+    try {
+      const result = await taskApi.getTasks();
+      console.log("GET /task success:", result);
+    } catch (error) {
+      console.error("GET /task failed:", error);
+    }
+  };
+
+  const handleUpdateTask = async (id: string) => {
+    try {
+      const task: ICreateTask = generateSeedTask();
+      const result = await taskApi.updateTask(id, task);
+      console.log("PATCH /task success:", result);
+    } catch (error) {
+      console.error("PATCH /task failed:", error);
+    }
+  };
+
+  const handleDeleteTask = async (id: string) => {
+    try {
+      const result = await taskApi.deleteTask(id);
+      console.log("DELETE /task success:", result);
+    } catch (error) {
+      console.error("DELETE /task failed:", error);
+    }
+  };
 
   return (
     <>
@@ -27,18 +78,22 @@ export default function TestTools({ children }: React.PropsWithChildren) {
               Testing Tools
             </h3>
             <div className="form-control ">
-              <label className="label cursor-pointer w-full flex  justify-around">
+              <label className="label cursor-pointer w-full flex justify-around">
                 <span className="label-text text-surface">Console output</span>
                 <input
                   type="checkbox"
                   className="toggle toggle-primary toggle-sm"
                   checked={isConsoleOpen}
-                  onChange={()=>setConsoleIsOpen(!isConsoleOpen)}
+                  onChange={() => setConsoleIsOpen(!isConsoleOpen)}
                 />
               </label>
             </div>
             <div className="[&>button]:btn [&>button]:text-primary [&>button]:btn-block [&>button]:btn-sm py-2 flex flex-col gap-2">
-              {children}
+              <button onClick={handleLogin}>Login</button>
+              <button onClick={handleGetTask}>Get Task</button>
+              <button onClick={handleAddTask}>Add Task</button>
+              <ButtonWithId label="Update Task" onAction={handleUpdateTask} />
+              <ButtonWithId label="Remove Task" onAction={handleDeleteTask} />
             </div>
           </div>
         )}

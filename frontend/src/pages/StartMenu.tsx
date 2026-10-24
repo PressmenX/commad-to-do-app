@@ -1,75 +1,9 @@
 import { ArrowRight, Terminal } from "lucide-react";
-import { authApi } from "../services/authApi";
-import TestTools from "../components/TestTools";
-import { generateSeedTask } from "../services/seed-data";
-import { taskApi } from "../services/taskApi";
-import type { ICreateTask } from "..";
-import ButtonWithId from "../components/ButtonWithId";
 import { Link } from "react-router";
 
 export default function StartMenu() {
-  const handleLogin = async () => {
-    try {
-      const res = await authApi.login("siti.nur@domain.co.id", "Password123!");
-      console.log("Login success:", res);
-    } catch (error) {
-      console.error("Login failed:", error);
-    }
-  };
-
-  const handleAddTask = async () => {
-    try {
-      const newTask: ICreateTask = generateSeedTask();
-
-      const result = await taskApi.addTask(newTask);
-      console.log("POST /task success:", result);
-    } catch (error) {
-      console.error("POST /task failed:", error);
-    }
-  };
-
-  const handleGetTask = async () => {
-    try {
-      const result = await taskApi.getTasks();
-      console.log("GET /task success:", result);
-    } catch (error) {
-      console.error("GET /task failed:", error);
-    }
-  };
-
-  const handleUpdateTask = async (id: string) => {
-    try {
-      const task: ICreateTask = generateSeedTask();
-      const result = await taskApi.updateTask(id, task);
-      console.log("PATCH /task success:", result);
-    } catch (error) {
-      console.error("PATCH /task failed:", error);
-    }
-  };
-
-  const handleDeleteTask = async (id: string) => {
-    try {
-      const result = await taskApi.deleteTask(id);
-      console.log("DELETE /task success:", result);
-    } catch (error) {
-      console.error("DELETE /task failed:", error);
-    }
-  };
-
   return (
     <div className="flex min-h-dvh w-full flex-col px-6 py-6 font-sans sm:py-8 bg-brand-gradient">
-      {import.meta.env.MODE === "development" && (
-        <TestTools>
-          <button onClick={handleLogin} className="">
-            Login
-          </button>
-          <button onClick={handleGetTask}>Get Task</button>
-          <button onClick={handleAddTask}>Add Task</button>
-          <ButtonWithId label="Update Task" onAction={handleUpdateTask} />
-          <ButtonWithId label="Remove Task" onAction={handleDeleteTask} />
-        </TestTools>
-      )}
-
       <div className="flex flex-1 flex-col items-center justify-center">
         <h1 className="text-3xl  text-surface font-bold mb-5 ">Command Todo</h1>
         <div className="relative flex items-center justify-center p-6 m-8 bg-white rounded-full ">
