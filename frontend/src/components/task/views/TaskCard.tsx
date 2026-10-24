@@ -1,7 +1,7 @@
 import { FlagTriangleRight, Trash2 } from "lucide-react";
-import type { ITask, TaskProps } from "../..";
-import { useToggleTask } from "../../hooks/useToggleTask";
-import { useDeleteTask } from "../../hooks/useDeleteTask";
+import type { ITask, TaskProps } from "../../..";
+import { useToggleTask } from "../../../hooks/useToggleTask";
+import { useDeleteTask } from "../../../hooks/useDeleteTask";
 import { useState } from "react";
 
 export default function TaskCard({ tasks }: TaskProps) {

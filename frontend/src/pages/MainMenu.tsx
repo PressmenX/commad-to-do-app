@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import TaskList from "../components/task/TaskList";
 import { ArrowLeft, Plus } from "lucide-react";
-import AddTaskModal from "../components/task/AddTaskModal";
+import AddTaskModal from "../components/task/modal/AddTaskModal";
 import NiceModal from "@ebay/nice-modal-react";
 import { useAuth } from "../context/AuthContext";
 import UserProgressCard from "../components/UserProgressCard";

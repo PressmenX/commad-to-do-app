@@ -1,7 +1,7 @@
 import { useState } from "react";
-import type { ITask, TaskProps } from "../..";
-import { useDeleteTask } from "../../hooks/useDeleteTask";
-import { useToggleTask } from "../../hooks/useToggleTask";
+import type { ITask, TaskProps } from "../../..";
+import { useDeleteTask } from "../../../hooks/useDeleteTask";
+import { useToggleTask } from "../../../hooks/useToggleTask";
 import { Trash2 } from "lucide-react";
 
 export default function TaskTable({ tasks }: TaskProps) {

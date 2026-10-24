@@ -1,4 +1,4 @@
-import TaskCard from "./TaskCard";
+import TaskCard from "./views/TaskCard";
 import {
   FileQuestion,
   List,
@@ -8,8 +8,8 @@ import {
   ArrowUp,
   ArrowDown,
 } from "lucide-react";
-import TaskItem from "./TaskItem";
-import TaskTable from "./TaskTable";
+import TaskItem from "./views/TaskItem";
+import TaskTable from "./views/TaskTable";
 import { useGetTask } from "../../hooks/useGetTask";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import {
@@ -53,76 +53,80 @@ export default function TaskList() {
           To Do List
         </h2>
 
-        {isLoggedIn && <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 bg-base-200 p-1 rounded-md border border-base-content/20">
-            <select
-              value={sortCriterion}
-              onChange={(e) =>
-                setSortCriterion(e.target.value as SortCriterion)
-              }
-              className="select select-ghost select-xs text-xs font-medium focus:outline-none"
-              aria-label="Sort By"
-            >
-              <option value="createdAt">Created</option>
-              <option value="updatedAt">Updated</option>
-              <option value="priority">Priority</option>
-              <option value="name">Alphabet</option>
-            </select>
+        {isLoggedIn && (
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 bg-base-200 p-1 rounded-md border border-base-content/20">
+              <select
+                value={sortCriterion}
+                onChange={(e) =>
+                  setSortCriterion(e.target.value as SortCriterion)
+                }
+                className="select select-ghost select-xs text-xs font-medium focus:outline-none"
+                aria-label="Sort By"
+              >
+                <option value="createdAt">Created</option>
+                <option value="updatedAt">Updated</option>
+                <option value="priority">Priority</option>
+                <option value="name">Alphabet</option>
+              </select>
 
-            <button
-              onClick={toggleDirection}
-              className="btn btn-xs btn-primary p-1 shadow-none text-white/70 hover:text-white"
-              title={
-                sortDirection === "asc" ? "Ascending Order" : "Descending Order"
-              }
-              aria-label="Change Sequence Direction"
-            >
-              {sortDirection === "asc" ? (
-                <ArrowUp size={14} strokeWidth={3} />
-              ) : (
-                <ArrowDown size={14} strokeWidth={3} />
-              )}
-            </button>
+              <button
+                onClick={toggleDirection}
+                className="btn btn-xs btn-primary p-1 shadow-none text-white/70 hover:text-white"
+                title={
+                  sortDirection === "asc"
+                    ? "Ascending Order"
+                    : "Descending Order"
+                }
+                aria-label="Change Sequence Direction"
+              >
+                {sortDirection === "asc" ? (
+                  <ArrowUp size={14} strokeWidth={3} />
+                ) : (
+                  <ArrowDown size={14} strokeWidth={3} />
+                )}
+              </button>
+            </div>
+
+            <div className="join bg-base-200 p-1 rounded-md border border-base-content/20">
+              <button
+                onClick={() => setViewMode("card")}
+                className={`btn btn-xs join-item gap-1 shadow-none ${
+                  currentViewMode === "card"
+                    ? "btn-primary text-white"
+                    : "btn-ghost text-base-content/70 hover:text-base-content"
+                }`}
+                aria-label="Card view"
+              >
+                <Rows3 size={14} />
+              </button>
+
+              <button
+                onClick={() => setViewMode("list")}
+                className={`btn btn-xs join-item gap-1 shadow-none ${
+                  currentViewMode === "list"
+                    ? "btn-primary text-white"
+                    : "btn-ghost text-base-content/70 hover:text-base-content"
+                }`}
+                aria-label="List view"
+              >
+                <List size={14} />
+              </button>
+
+              <button
+                onClick={() => setViewMode("table")}
+                className={`btn btn-xs join-item gap-1 shadow-none ${
+                  currentViewMode === "table"
+                    ? "btn-primary text-white"
+                    : "btn-ghost text-base-content/70 hover:text-base-content"
+                }`}
+                aria-label="Table view"
+              >
+                <Table size={14} />
+              </button>
+            </div>
           </div>
-
-          <div className="join bg-base-200 p-1 rounded-md border border-base-content/20">
-            <button
-              onClick={() => setViewMode("card")}
-              className={`btn btn-xs join-item gap-1 shadow-none ${
-                currentViewMode === "card"
-                  ? "btn-primary text-white"
-                  : "btn-ghost text-base-content/70 hover:text-base-content"
-              }`}
-              aria-label="Card view"
-            >
-              <Rows3 size={14} />
-            </button>
-
-            <button
-              onClick={() => setViewMode("list")}
-              className={`btn btn-xs join-item gap-1 shadow-none ${
-                currentViewMode === "list"
-                  ? "btn-primary text-white"
-                  : "btn-ghost text-base-content/70 hover:text-base-content"
-              }`}
-              aria-label="List view"
-            >
-              <List size={14} />
-            </button>
-
-            <button
-              onClick={() => setViewMode("table")}
-              className={`btn btn-xs join-item gap-1 shadow-none ${
-                currentViewMode === "table"
-                  ? "btn-primary text-white"
-                  : "btn-ghost text-base-content/70 hover:text-base-content"
-              }`}
-              aria-label="Table view"
-            >
-              <Table size={14} />
-            </button>
-          </div>
-        </div>}
+        )}
       </div>
 
       {isLoading && (

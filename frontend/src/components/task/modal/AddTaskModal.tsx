@@ -8,10 +8,10 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { TaskPriority, type ICreateTask } from "../..";
+import { TaskPriority, type ICreateTask } from "../../..";
 import NiceModal, { useModal } from "@ebay/nice-modal-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { taskApi } from "../../services/taskApi";
+import { taskApi } from "../../../services/taskApi";
 
 export default NiceModal.create(() => {
   const modal = useModal();
