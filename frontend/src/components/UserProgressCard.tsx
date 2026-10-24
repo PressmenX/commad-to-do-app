@@ -1,12 +1,10 @@
 import { Settings, Flag } from "lucide-react";
-import { useAuth } from "../../context/AuthContext";
-import { useGetTask } from "../../hooks/useGetTask";
+import { useAuth } from "../context/AuthContext";
+import { useGetTask } from "../hooks/useGetTask";
 
 export default function UserProgressCard() {
   const { user } = useAuth();
-   const {
-      data: tasks = [],
-    } = useGetTask();
+  const { data: tasks = [] } = useGetTask();
 
   const totalTasks = tasks.length;
   const completedTasks = tasks.filter((t) => t.isCompleted).length;

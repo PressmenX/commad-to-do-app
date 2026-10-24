@@ -4,7 +4,7 @@ import { ArrowLeft, Plus } from "lucide-react";
 import AddTaskModal from "../components/task/AddTaskModal";
 import NiceModal from "@ebay/nice-modal-react";
 import { useAuth } from "../context/AuthContext";
-import UserProgressCard from "../components/task/UserProgressCard";
+import UserProgressCard from "../components/UserProgressCard";
 
 export default function MainMenu() {
   const { isLoggedIn } = useAuth();
@@ -18,13 +18,15 @@ export default function MainMenu() {
         </button>
       </Link>
       <TaskList />
-     {isLoggedIn && <button
-        onClick={() => NiceModal.show(AddTaskModal)}
-        className="btn btn-primary btn-circle btn-lg fixed bottom-4 right-4 shadow-xl z-50 text-white"
-        aria-label="Add Task"
-      >
-        <Plus size={24} />
-      </button>}
+      {isLoggedIn && (
+        <button
+          onClick={() => NiceModal.show(AddTaskModal)}
+          className="btn btn-primary btn-circle btn-lg fixed bottom-4 right-4 shadow-xl z-50 text-white"
+          aria-label="Add Task"
+        >
+          <Plus size={24} />
+        </button>
+      )}
     </div>
   );
 }
