@@ -53,7 +53,7 @@ export default function TaskList() {
           To Do List
         </h2>
 
-        <div className="flex items-center gap-2">
+        {isLoggedIn && <div className="flex items-center gap-2">
           <div className="flex items-center gap-1 bg-base-200 p-1 rounded-md border border-base-content/20">
             <select
               value={sortCriterion}
@@ -122,7 +122,7 @@ export default function TaskList() {
               <Table size={14} />
             </button>
           </div>
-        </div>
+        </div>}
       </div>
 
       {isLoading && (

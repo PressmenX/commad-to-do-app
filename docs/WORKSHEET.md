@@ -89,7 +89,7 @@ Ringkasan keputusan final dari sesi planning:
 
 - [x]  **Unit 31** — Table View — render task dalam format tabel sesuai referensi visual
 - [x]  **Unit 32** — Toggle Card View ↔ List View ↔ Table View, simpan preferensi ke local storage
-- [ ]  **Unit 33** — Fitur sort (Priority, Alfabetis, createdAt, updatedAt) — ascending/descending
+- [x]  **Unit 33** — Fitur sort (Priority, Alfabetis, createdAt, updatedAt) — ascending/descending
 - [ ]  **Unit 34** — Multi-select checkbox + floating bulk action bar (Mark Done Selected, Delete Selected)
 - [ ]  🛑 Removed **Unit 35** — Integrasi Fuse.js — auto-suggestion saat mengetik di form/command `ADD`
 
