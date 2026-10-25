@@ -64,15 +64,22 @@ export function useBulkTaskActions(tasks: ITask[], visibleTasks: ITask[]) {
 
     try {
       const results = await Promise.allSettled(selectedTasks.map(action));
-      const failedCount = results.filter(
-        (result) => result.status === "rejected",
-      ).length;
+      const failedTasks = selectedTasks.filter(
+        (_, index) => results[index].status === "rejected",
+      );
 
       await queryClient.invalidateQueries({ queryKey: ["tasks"] });
-      setSelectedIds([]);
+      setSelectedIds((currentIds) => [
+        ...currentIds.filter(
+          (id) => taskIds.has(id) && !selectedIdSet.has(id),
+        ),
+        ...failedTasks.map((task) => task.id),
+      ]);
 
-      if (failedCount > 0) {
-        alert(`${failedCount} ${failureMessage}`);
+      if (failedTasks.length > 0) {
+        alert(
+          `${failedTasks.length} ${failureMessage} Failed tasks remain selected.`,
+        );
       }
     } finally {
       setIsProcessing(false);

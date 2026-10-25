@@ -11,13 +11,13 @@ export default function TaskCard({
   onToggleSelect,
 }: TaskProps) {
   const { toggleTask } = useToggleTask();
-  const { deleteTask } = useDeleteTask();
+  const { deleteTaskAsync } = useDeleteTask();
 
   const handleSingleDelete = (task: ITask) => {
     void NiceModal.show(ConfirmDeleteModal, {
       tasksToDelete: [task],
       onConfirm: async () => {
-        await deleteTask(task.id);
+        await deleteTaskAsync(task.id);
       },
     });
   };

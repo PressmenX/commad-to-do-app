@@ -13,6 +13,7 @@ export function useDeleteTask() {
 
   return {
     deleteTask: mutation.mutate,
+    deleteTaskAsync: mutation.mutateAsync,
     isDeleting: mutation.isPending,
   };
 }

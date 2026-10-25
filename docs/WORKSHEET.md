@@ -90,10 +90,10 @@ Ringkasan keputusan final dari sesi planning:
 - [x]  **Unit 31** — Table View — render task dalam format tabel sesuai referensi visual
 - [x]  **Unit 32** — Toggle Card View ↔ List View ↔ Table View, simpan preferensi ke local storage
 - [x]  **Unit 33** — Fitur sort (Priority, Alfabetis, createdAt, updatedAt) — ascending/descending
-- [ ]  **Unit 34** — Multi-select checkbox + floating bulk action bar (Mark Done Selected, Delete Selected)
+- [x]  **Unit 34** — Multi-select checkbox + floating bulk action bar (Mark Done Selected, Delete Selected)
 - [ ]  🛑 Removed **Unit 35** — Integrasi Fuse.js — auto-suggestion saat mengetik di form/command `ADD`
 
-### Domain 5: Data Portability
+### [SKIPEDD] Domain 5: Data Portability
 
 - **Unit 36** — Fitur Export —  `EXPORT` + tombol, download seluruh data jadi `.json`
 - **Unit 37** — Fitur Import —  `IMPORT` + tombol, pilih file `.json`
