@@ -7,4 +7,10 @@ export const authApi = {
       password: pass,
     })).data;
   },
+  register: async (payload: { name: string; email: string; password: string }) => {
+    return (await api.post("/auth/register", payload)).data;
+  },
+  logout: async () => {
+    return (await api.post("/auth/logout")).data;
+  }
 };

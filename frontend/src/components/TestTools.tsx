@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Wrench } from "lucide-react";
 import { ConsoleDisplay } from "./ConsoleDisplay";
 import { authApi } from "../services/authApi";
+import { useAuth } from "../context/AuthContext";
 import { generateSeedTask } from "../services/seed-data";
 import { taskApi } from "../services/taskApi";
 import type { ICreateTask } from "..";
@@ -10,6 +11,7 @@ import ButtonWithId from "./ButtonWithId";
 export default function TestTools() {
   const [isOpen, setIsOpen] = useState(false);
   const [isConsoleOpen, setConsoleIsOpen] = useState(false);
+  const { logout } = useAuth();
 
   const handleLogin = async () => {
     try {
@@ -17,6 +19,15 @@ export default function TestTools() {
       console.log("Login success:", res);
     } catch (error) {
       console.error("Login failed:", error);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      console.log("Logout success");
+    } catch (error) {
+      console.error("Logout failed:", error);
     }
   };
 
@@ -90,6 +101,7 @@ export default function TestTools() {
             </div>
             <div className="[&>button]:btn [&>button]:text-primary [&>button]:btn-block [&>button]:btn-sm py-2 flex flex-col gap-2">
               <button onClick={handleLogin}>Login</button>
+              <button onClick={handleLogout}>Logout</button>
               <button onClick={handleGetTask}>Get Task</button>
               <button onClick={handleAddTask}>Add Task</button>
               <ButtonWithId label="Update Task" onAction={handleUpdateTask} />
