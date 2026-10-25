@@ -1,10 +1,18 @@
-import { Body, Controller, Get, Post, Res, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Req,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LocalAuthGuard } from '@/common/guard/local-auth.guard';
 import { CurrentUser } from '@/common/decorators/current-user.decorator';
 import { UserResponseDto } from '../../common/dto/user-response.dto';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { ConfigService } from '@nestjs/config';
 import { JwtAuthGuard } from '@/common/guard/jwt-auth.guard';
 
@@ -35,14 +43,8 @@ export class AuthController {
       email: user.email,
     });
 
-    const isProduction =
-      this.configService.get<string>('NODE_ENV') === 'production';
-    res.cookie('access_token', accessToken, {
-      sameSite: 'lax',
-      secure: isProduction,
-      httpOnly: true,
-      maxAge: 15 * 60 * 1000,
-    });
+    const refreshToken = await this.authService.createRefreshToken(user.id);
+    this.setAuthCookies(res, accessToken, refreshToken);
 
     return {
       message: 'Login successful',
@@ -50,9 +52,36 @@ export class AuthController {
     };
   }
 
+  @Post('refresh')
+  async refresh(
+    @Req() req: Request,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    const result = await this.authService.rotateRefreshToken(
+      req.cookies?.refresh_token,
+    );
+    const accessToken = await this.authService.getToken({
+      sub: result.user.id,
+      email: result.user.email,
+    });
+
+    this.setAuthCookies(res, accessToken, result.token);
+
+    return {
+      message: 'Token refreshed',
+      data: result.user,
+    };
+  }
+
   @Post('logout')
-  logout(@Res({ passthrough: true }) res: Response) {
-    res.clearCookie('access_token');
+  async logout(
+    @Req() req: Request,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    await this.authService.revokeRefreshToken(req.cookies?.refresh_token);
+    const cookieOptions = this.getCookieOptions();
+    res.clearCookie('access_token', { ...cookieOptions, path: '/' });
+    res.clearCookie('refresh_token', { ...cookieOptions, path: '/auth' });
     return { message: 'Logout successful' };
   }
 
@@ -60,5 +89,33 @@ export class AuthController {
   @Get('profile')
   getProfile(@CurrentUser() user: UserResponseDto) {
     return user;
+  }
+
+  private setAuthCookies(
+    res: Response,
+    accessToken: string,
+    refreshToken: string,
+  ) {
+    const cookieOptions = this.getCookieOptions();
+    res.cookie('access_token', accessToken, {
+      ...cookieOptions,
+      path: '/',
+      maxAge: 15 * 60 * 1000,
+    });
+    res.cookie('refresh_token', refreshToken, {
+      ...cookieOptions,
+      path: '/auth',
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+  }
+
+  private getCookieOptions() {
+    const isProduction =
+      this.configService.get<string>('NODE_ENV') === 'production';
+    return {
+      sameSite: 'lax' as const,
+      secure: isProduction,
+      httpOnly: true,
+    };
   }
 }

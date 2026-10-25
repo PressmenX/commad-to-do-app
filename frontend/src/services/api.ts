@@ -1,4 +1,10 @@
-import axios from "axios";
+import axios, { type AxiosError } from "axios";
+
+declare module "axios" {
+  interface InternalAxiosRequestConfig {
+    _retry?: boolean;
+  }
+}
 
 export const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000",
@@ -8,12 +14,45 @@ export const api = axios.create({
   withCredentials: true,
 });
 
+let refreshPromise: Promise<void> | null = null;
+
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
-    if (error.response?.status === 401 && !error.config.url?.includes('/auth/login')) {
-      window.dispatchEvent(new Event('auth:unauthorized'));
+  async (error: AxiosError) => {
+    const request = error.config;
+    const url = request?.url ?? "";
+
+    if (
+      error.response?.status !== 401 ||
+      !request ||
+      url.includes("/auth/login") ||
+      url.includes("/auth/refresh")
+    ) {
+      return Promise.reject(error);
     }
-    return Promise.reject(error);
-  }
+
+    if (request._retry) {
+      window.dispatchEvent(new Event("auth:unauthorized"));
+      return Promise.reject(error);
+    }
+
+    request._retry = true;
+
+    try {
+      if (!refreshPromise) {
+        refreshPromise = api
+          .post("/auth/refresh")
+          .then(() => undefined)
+          .finally(() => {
+            refreshPromise = null;
+          });
+      }
+
+      await refreshPromise;
+      return api.request(request);
+    } catch (refreshError) {
+      window.dispatchEvent(new Event("auth:unauthorized"));
+      return Promise.reject(refreshError);
+    }
+  },
 );
