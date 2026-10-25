@@ -13,7 +13,11 @@ import { useBulkTaskActions } from "../../hooks/useBulkTaskActions";
 type ViewMode = "card" | "list" | "table";
 const VALID_MODES: ViewMode[] = ["card", "list", "table"];
 
-export default function TaskList() {
+interface TaskListProps {
+  onBulkModeChange?: (isActive: boolean) => void;
+}
+
+export default function TaskList({ onBulkModeChange }: TaskListProps) {
   const { data: tasks = [], isLoading, isError, error } = useGetTask();
   const [savedMode, setSavedMode] = useLocalStorage<ViewMode>(
     "task_view_mode",
@@ -32,6 +36,12 @@ export default function TaskList() {
   const sortedTasks = sortTasks(tasks, sortCriterion, sortDirection);
   const bulkActions = useBulkTaskActions(tasks, sortedTasks);
 
+  const handleToggleBulkMode = () => {
+    const nextIsBulkMode = !bulkActions.isBulkMode;
+    bulkActions.toggleBulkMode();
+    onBulkModeChange?.(nextIsBulkMode);
+  };
+
   return (
     <div className="flex min-h-80 flex-col pb-16">
       <TaskListToolbar
@@ -44,7 +54,7 @@ export default function TaskList() {
         isBulkMode={bulkActions.isBulkMode}
         isProcessingBulk={bulkActions.isProcessing}
         hasTasks={tasks.length > 0}
-        onToggleBulkMode={bulkActions.toggleBulkMode}
+        onToggleBulkMode={handleToggleBulkMode}
       />
 
       <TaskListContent

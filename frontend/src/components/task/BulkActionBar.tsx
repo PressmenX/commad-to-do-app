@@ -18,7 +18,7 @@ export default function BulkActionBar({
   if (selectedCount === 0) return null;
 
   return (
-    <div className="fixed bottom-24 left-3 right-3 z-40 flex items-center justify-between gap-2 rounded-2xl border border-base-content/20 bg-base-300/90 px-3 py-2.5 shadow-2xl backdrop-blur-md animate-in fade-in slide-in-from-bottom-4 duration-200 sm:bottom-6 sm:left-1/2 sm:right-auto sm:w-max sm:-translate-x-1/2 sm:gap-3 sm:px-4">
+    <div className="fixed bottom-6 left-3 right-3 z-40 flex items-center justify-between gap-2 rounded-2xl border border-base-content/20 bg-base-300/90 px-3 py-2.5 shadow-2xl backdrop-blur-md animate-in fade-in slide-in-from-bottom-4 duration-200 sm:left-1/2 sm:right-auto sm:w-max sm:-translate-x-1/2 sm:gap-3 sm:px-4">
       <div className="flex items-center gap-2 pr-2 border-r border-base-content/15">
         <span className="badge badge-primary font-bold text-xs">
           {selectedCount}

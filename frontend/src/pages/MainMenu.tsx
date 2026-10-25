@@ -1,32 +1,25 @@
 import { Link } from "react-router";
 import TaskList from "../components/task/TaskList";
-import { ArrowLeft, Plus } from "lucide-react";
-import AddTaskModal from "../components/task/modal/AddTaskModal";
-import NiceModal from "@ebay/nice-modal-react";
+import { ArrowLeft } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import UserProgressCard from "../components/UserProgressCard";
+import BottomNav from "../components/BottomNav";
+import { useState } from "react";
 
 export default function MainMenu() {
   const { isLoggedIn } = useAuth();
+  const [isBulkMode, setIsBulkMode] = useState(false);
 
   return (
-    <div className=" min-h-dvh">
+    <div className="min-h-dvh pb-20">
       <UserProgressCard />
       <Link to="/">
         <button className="btn btn-primary btn-sm btn-circle fixed top-4 left-4 z-999 opacity-30 transition hover:opacity-100 active:scale-95 active:opacity-100">
           <ArrowLeft />
         </button>
       </Link>
-      <TaskList />
-      {isLoggedIn && (
-        <button
-          onClick={() => NiceModal.show(AddTaskModal)}
-          className="btn btn-primary btn-circle btn-lg fixed bottom-4 right-4 shadow-xl z-50 text-white"
-          aria-label="Add Task"
-        >
-          <Plus size={24} />
-        </button>
-      )}
+      <TaskList onBulkModeChange={setIsBulkMode} />
+      {isLoggedIn && !isBulkMode && <BottomNav />}
     </div>
   );
 }
