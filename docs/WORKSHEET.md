@@ -42,6 +42,8 @@ Ringkasan keputusan final dari sesi planning:
 
 **Requirements :** Backend bisa `npm run start:dev` tanpa error dan konek ke DB lokal. Frontend bisa `npm run dev` dan render halaman kosong tanpa error. Docker Compose bisa `up` tanpa konflik port.
 
+Setelah database PostgreSQL aktif dan `backend/.env` mengarah ke database tersebut, terapkan semua migrasi yang belum dijalankan dengan `npm run prisma:migrate:deploy --prefix backend` sebelum menjalankan backend. Jalankan perintah ini lagi setiap ada migrasi baru.
+
 ---
 
 ## FASE 3: BREAKDOWN (Development)
