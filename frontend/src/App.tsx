@@ -4,6 +4,7 @@ import MainMenu from "./pages/MainMenu";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import TestTools from "./components/TestTools";
 import NiceModal from "@ebay/nice-modal-react";
+import SettingMenu from "./pages/SettingMenu";
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
   const { isLoading, isLoggedIn } = useAuth();
@@ -39,6 +40,7 @@ export default function App() {
                 </RequireAuth>
               }
             />
+            <Route path="/setting" element={<SettingMenu />} />
           </Routes>
         </NiceModal.Provider>
       </BrowserRouter>

@@ -24,18 +24,13 @@ export default function BottomNav() {
             <Plus size={26} />
           </button>
         </div>
-
-        <button
-          type="button"
-          onClick={() => {
-            // TODO: Tambahkan aksi untuk membuka modal atau halaman pengaturan di sini nanti
-            console.log("Settings diklik");
-          }}
+        <Link
+          to="/setting"
           className="flex flex-col items-center gap-1 text-base-content/60 hover:text-primary transition-colors"
         >
           <Settings size={22} />
           <span className="text-[10px] font-medium">Settings</span>
-        </button>
+        </Link>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { Settings, Flag } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useGetTask } from "../hooks/useGetTask";
+import { Link } from "react-router";
 
 export default function UserProgressCard() {
   const { user } = useAuth();
@@ -43,18 +44,13 @@ export default function UserProgressCard() {
             </h1>
           </div>
         </div>
-
-        <button
-          type="button"
-          onClick={() => {
-            // TODO: Tambahkan aksi untuk membuka modal atau halaman pengaturan di sini nanti
-            console.log("Pengaturan diklik");
-          }}
-          className="btn btn-ghost btn-circle btn-sm text-white hover:bg-white/20"
+        <Link
+          to="/setting" 
+          className="btn btn-ghost btn-circle btn-sm text-white hover:bg-white/20 flex items-center justify-center"
           aria-label="Pengaturan"
         >
           <Settings size={20} />
-        </button>
+        </Link>
       </div>
 
       <div className="relative z-10 flex items-center gap-2 mb-4 p-4 bg-glass">
