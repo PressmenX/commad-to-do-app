@@ -4,7 +4,14 @@ import { useDeleteTask } from "../../../hooks/useDeleteTask";
 import { useToggleTask } from "../../../hooks/useToggleTask";
 import { Trash2 } from "lucide-react";
 
-export default function TaskTable({ tasks }: TaskProps) {
+export default function TaskTable({
+  tasks,
+  isBulkMode = false,
+  selectedIds = [],
+  onToggleSelect,
+  onSelectAll,
+  isAllSelected = false,
+}: TaskProps) {
   const { toggleTask } = useToggleTask();
   const { deleteTask, isDeleting } = useDeleteTask();
   const [taskToDelete, setTaskToDelete] = useState<ITask | null>(null);
@@ -39,7 +46,15 @@ export default function TaskTable({ tasks }: TaskProps) {
         <thead>
           <tr>
             <th className="w-12 border border-base-300 bg-base-200 px-3 py-2">
-              <input type="checkbox" className="checkbox checkbox-sm" />
+              {isBulkMode && (
+                <input
+                  type="checkbox"
+                  className="checkbox checkbox-sm checkbox-primary"
+                  checked={isAllSelected}
+                  onChange={() => onSelectAll?.()}
+                  aria-label="Pilih semua task"
+                />
+              )}
             </th>
             <th className="whitespace-nowrap border border-base-300 bg-base-200 px-3 py-2">
               Action
@@ -70,9 +85,26 @@ export default function TaskTable({ tasks }: TaskProps) {
               <td className="border border-base-300 px-3 py-2 align-middle">
                 <input
                   type="checkbox"
-                  className="checkbox checkbox-sm checked:checkbox-success text-white"
-                  checked={task.isCompleted}
-                  onChange={() => toggleTask(task)}
+                  className={`checkbox ${
+                    isBulkMode
+                      ? "checkbox-sm checkbox-primary rounded-md"
+                      : "checkbox-sm checked:checkbox-success text-white"
+                  }`}
+                  checked={
+                    isBulkMode
+                      ? selectedIds.includes(task.id)
+                      : task.isCompleted
+                  }
+                  onChange={() =>
+                    isBulkMode
+                      ? onToggleSelect?.(task.id)
+                      : toggleTask(task)
+                  }
+                  aria-label={
+                    isBulkMode
+                      ? `Pilih task ${task.name}`
+                      : `Tandai selesai ${task.name}`
+                  }
                 />
               </td>
               <td className="border border-base-300 px-3 py-2 align-middle">

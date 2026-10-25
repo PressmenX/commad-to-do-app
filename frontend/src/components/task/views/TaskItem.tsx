@@ -4,7 +4,12 @@ import { useToggleTask } from "../../../hooks/useToggleTask";
 import { useState } from "react";
 import { useDeleteTask } from "../../../hooks/useDeleteTask";
 
-export default function TaskItem({ tasks }: TaskProps) {
+export default function TaskItem({
+  tasks,
+  isBulkMode = false,
+  selectedIds = [],
+  onToggleSelect,
+}: TaskProps) {
   const { toggleTask } = useToggleTask();
   const { deleteTask, isDeleting } = useDeleteTask();
   const [taskToDelete, setTaskToDelete] = useState<ITask | null>(null);
@@ -33,9 +38,22 @@ export default function TaskItem({ tasks }: TaskProps) {
             <div className="flex items-center gap-3">
               <input
                 type="checkbox"
-                className="checkbox checkbox-sm checked:checkbox-success text-white"
-                checked={task.isCompleted}
-                onChange={() => toggleTask(task)}
+                aria-label={
+                  isBulkMode
+                    ? `Pilih task ${task.name}`
+                    : `Tandai selesai ${task.name}`
+                }
+                className={`checkbox ${
+                  isBulkMode
+                    ? "checkbox-primary checkbox-sm rounded-md"
+                    : "checkbox-sm checked:checkbox-success text-white"
+                }`}
+                checked={
+                  isBulkMode ? selectedIds.includes(task.id) : task.isCompleted
+                }
+                onChange={() =>
+                  isBulkMode ? onToggleSelect?.(task.id) : toggleTask(task)
+                }
               />
               <span
                 className={`text-sm font-medium max-w-40 truncate ${

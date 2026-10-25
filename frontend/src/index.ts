@@ -30,4 +30,9 @@ export interface ITask {
 
 export interface TaskProps {
   tasks: ITask[];
+  isBulkMode?: boolean;
+  selectedIds?: string[];
+  onToggleSelect?: (id: string) => void;
+  onSelectAll?: () => void;
+  isAllSelected?: boolean;
 }
