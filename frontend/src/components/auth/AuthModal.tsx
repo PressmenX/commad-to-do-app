@@ -1,5 +1,5 @@
 // frontend/src/components/auth/AuthModal.tsx
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import NiceModal, { useModal } from "@ebay/nice-modal-react";
 import { X, AlertCircle, LogIn, UserPlus } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
@@ -20,6 +20,21 @@ export default NiceModal.create(({ initialMode = "login" }: { initialMode?: "log
   const [serverError, setServerError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const resetForm = useCallback(() => {
+    setMode(initialMode);
+    setName("");
+    setEmail("");
+    setPassword("");
+    setErrors({});
+    setServerError("");
+    setSuccessMessage("");
+    setIsSubmitting(false);
+  }, [initialMode]);
+
+  useEffect(() => {
+    resetForm();
+  }, [modal.visible, resetForm]);
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
@@ -44,6 +59,7 @@ export default NiceModal.create(({ initialMode = "login" }: { initialMode?: "log
     try {
       if (mode === "login") {
         await login(email, password);
+        resetForm();
         modal.hide();
         navigate("/main", { replace: true });
       } else {
@@ -80,7 +96,10 @@ export default NiceModal.create(({ initialMode = "login" }: { initialMode?: "log
     <dialog className="modal modal-open modal-bottom sm:modal-middle bg-black/50 backdrop-blur-xs z-50">
       <div className="modal-box bg-base-100 p-6 rounded-2xl relative">
         <button
-          onClick={() => modal.hide()}
+          onClick={() => {
+            resetForm();
+            modal.hide();
+          }}
           className="btn btn-sm btn-circle btn-ghost absolute right-4 top-4"
         >
           <X size={18} />

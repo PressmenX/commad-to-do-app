@@ -1,9 +1,27 @@
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import StartMenu from "./pages/StartMenu";
 import MainMenu from "./pages/MainMenu";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 import TestTools from "./components/TestTools";
 import NiceModal from "@ebay/nice-modal-react";
+
+function RequireAuth({ children }: { children: React.ReactNode }) {
+  const { isLoading, isLoggedIn } = useAuth();
+
+  if (isLoading) {
+    return (
+      <div
+        className="flex min-h-dvh items-center justify-center"
+        role="status"
+        aria-label="Checking session"
+      >
+        <span className="loading loading-spinner loading-lg" />
+      </div>
+    );
+  }
+
+  return isLoggedIn ? <>{children}</> : <Navigate to="/" replace />;
+}
 
 export default function App() {
   return (
@@ -13,7 +31,14 @@ export default function App() {
           {import.meta.env.MODE === "development" && <TestTools />}
           <Routes>
             <Route path="/" element={<StartMenu />} />
-            <Route path="/main" element={<MainMenu />} />
+            <Route
+              path="/main"
+              element={
+                <RequireAuth>
+                  <MainMenu />
+                </RequireAuth>
+              }
+            />
           </Routes>
         </NiceModal.Provider>
       </BrowserRouter>
