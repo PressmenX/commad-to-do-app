@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Wrench } from "lucide-react";
 import { ConsoleDisplay } from "./ConsoleDisplay";
-import { authApi } from "../services/authApi";
 import { useAuth } from "../context/AuthContext";
 import { generateSeedTask } from "../services/seed-data";
 import { taskApi } from "../services/taskApi";
@@ -11,12 +10,12 @@ import ButtonWithId from "./ButtonWithId";
 export default function TestTools() {
   const [isOpen, setIsOpen] = useState(false);
   const [isConsoleOpen, setConsoleIsOpen] = useState(false);
-  const { logout } = useAuth();
+ const { login, logout } = useAuth(); 
 
   const handleLogin = async () => {
     try {
-      const res = await authApi.login("siti.nur@domain.co.id", "Password123!");
-      console.log("Login success:", res);
+      await login("siti.nur@domain.co.id", "Password123!");
+      console.log("Login success");
     } catch (error) {
       console.error("Login failed:", error);
     }
