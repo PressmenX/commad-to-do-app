@@ -6,6 +6,7 @@ import {
   Check,
   AlertCircle,
   CheckCircle2,
+  FlagTriangleRight,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { TaskPriority, type ICreateTask } from "../../..";
@@ -161,10 +162,26 @@ export default NiceModal.create(() => {
                   onChange={(e) => setPriority(e.target.value as TaskPriority)}
                   className="select select-bordered w-full text-sm focus:select-primary"
                 >
-                  <option value={TaskPriority.NONE}>None</option>
-                  <option value={TaskPriority.LOW}>Low</option>
-                  <option value={TaskPriority.MEDIUM}>Medium</option>
-                  <option value={TaskPriority.HIGH}>High</option>
+                  <option
+                    className="text-base-content/70 ml-1"
+                    value={TaskPriority.NONE}
+                  >
+                    None
+                  </option>
+                  <option className="text-success" value={TaskPriority.LOW}>
+                    <FlagTriangleRight fill="currentColor" size={12} />
+                    Low
+                  </option>
+                  <option className="text-warning" value={TaskPriority.MEDIUM}>
+                    {" "}
+                    <FlagTriangleRight fill="currentColor" size={12} />
+                    Medium
+                  </option>
+                  <option className="text-error" value={TaskPriority.HIGH}>
+                    {" "}
+                    <FlagTriangleRight fill="currentColor" size={12} />
+                    High
+                  </option>
                 </select>
               </div>
 
