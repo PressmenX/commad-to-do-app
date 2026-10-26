@@ -6,6 +6,9 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PrismaClient } from '@prisma/client';
+import { PrismaNeon } from '@prisma/adapter-neon';
+import { neonConfig } from '@neondatabase/serverless';
+import ws from 'ws';
 
 @Injectable()
 export class PrismaService
@@ -21,16 +24,16 @@ export class PrismaService
       throw new Error('DATABASE_URL is not defined in environment variables');
     }
 
-    super({
-      datasources: {
-        db: { url: databaseUrl },
-      },
-    });
+    neonConfig.webSocketConstructor = ws;
+
+    const adapter = new PrismaNeon({ connectionString: databaseUrl });
+
+    super({ adapter });
   }
 
   async onModuleInit(): Promise<void> {
     await this.$connect();
-    this.logger.log('Prisma has been successfully connected');
+    this.logger.log('Prisma has been successfully connected via Neon Adapter');
   }
 
   async onModuleDestroy(): Promise<void> {
