@@ -56,7 +56,7 @@ Setelah database PostgreSQL aktif dan `backend/.env` mengarah ke database terseb
 - [x]  **Unit 16** — Model Task di Prisma schema (relasi ke User), migration
 - [x]  **Unit 17** — Endpoint CRUD Task (create, read, update, delete) — scoped per user
 
-- **🛑[ Removed] Unit 18** — Endpoint sync (`POST /sync`) — terima batch perubahan dari client, terapkan last-write-wins berdasarkan timestamp
+- [ ] **🛑[ Removed] Unit 18** — Endpoint sync (`POST /sync`) — terima batch perubahan dari client, terapkan last-write-wins berdasarkan timestamp
 
 ### **🔄Adjustment - 1  : Perubahan Task ID**
 
@@ -97,21 +97,21 @@ Setelah database PostgreSQL aktif dan `backend/.env` mengarah ke database terseb
 
 ### [SKIPEDD] Domain 5: Data Portability
 
-- **Unit 36** — Fitur Export —  `EXPORT` + tombol, download seluruh data jadi `.json`
-- **Unit 37** — Fitur Import —  `IMPORT` + tombol, pilih file `.json`
+- [ ]  **Unit 36** — Fitur Export —  `EXPORT` + tombol, download seluruh data jadi `.json`
+- [ ]  **Unit 37** — Fitur Import —  `IMPORT` + tombol, pilih file `.json`
 
 ### Domain 6: Sync & Auth (Jembatan Frontend-Backend)
 
-- **Unit 38** — UI Login/Register sederhana, simpan JWT token (localStorage/secure storage)
-- **🛑 Removed Unit 39** — Service sync di frontend — push perubahan lokal ke backend saat online
-- **🛑 Removed Unit 40** — Pull data dari backend saat login/reconnect, merge ke IndexedDB (last-write-wins)
-- **🛑 Removed Unit 41** — Indikator status sync di UI (online/offline/syncing) — kecil, tidak mengganggu
+- [x]  **Unit 38** — UI Login/Register sederhana, simpan JWT token (localStorage/secure storage)
+- [ ] **🛑 Removed Unit 39** — Service sync di frontend — push perubahan lokal ke backend saat online
+- [ ] **🛑 Removed Unit 40** — Pull data dari backend saat login/reconnect, merge ke IndexedDB (last-write-wins)
+- [ ] **🛑 Removed Unit 41** — Indikator status sync di UI (online/offline/syncing) — kecil, tidak mengganggu
 
 ### Domain 7: PWA
 
-- **Unit 42** — Setup `vite-plugin-pwa`, buat manifest (nama app, icon, tema warna)
-- **Unit 43** — Konfigurasi service worker untuk caching app shell (offline capability)
-- **Unit 44** — Test "Add to Home Screen" di Android, verifikasi app tetap jalan tanpa koneksi
+- [x]  **Unit 42** — Setup `vite-plugin-pwa`, buat manifest (nama app, icon, tema warna)
+- [ ]  **Unit 43** — Konfigurasi service worker untuk caching app shell (offline capability)
+- [ ]  **Unit 44** — Test "Add to Home Screen" di Android, verifikasi app tetap jalan tanpa koneksi
 
 **Definition of Done Fase Breakdown:** Semua unit di atas lulus kriteria Definition of Done masing-masing fitur (lihat tabel Fase Planning) secara individual, sebelum lanjut ke Fase Eval.
 
