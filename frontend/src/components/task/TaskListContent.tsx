@@ -11,6 +11,7 @@ interface TaskListContentProps {
   viewMode: ViewMode;
   isLoading: boolean;
   isError: boolean;
+  isOffline: boolean;
   errorMessage?: string;
   isBulkMode: boolean;
   selectedIds: string[];
@@ -24,6 +25,7 @@ export default function TaskListContent({
   viewMode,
   isLoading,
   isError,
+  isOffline,
   errorMessage,
   isBulkMode,
   selectedIds,
@@ -31,8 +33,12 @@ export default function TaskListContent({
   onSelectAll,
   isAllSelected,
 }: TaskListContentProps) {
-  if (isLoading) return <LoadingState />;
-  if (isError) return <ErrorState message={errorMessage} />;
+  if (isOffline) {
+    if (tasks.length === 0) return <OfflineState />;
+  } else {
+    if (isLoading) return <LoadingState />;
+    if (isError) return <ErrorState message={errorMessage} />;
+  }
   if (tasks.length === 0) return <EmptyState />;
 
   const taskViewProps = {
@@ -56,6 +62,21 @@ export default function TaskListContent({
         />
       );
   }
+}
+
+function OfflineState() {
+  return (
+    <div
+      className="flex flex-1 flex-col items-center justify-center p-8 text-center text-base-content/60"
+      role="status"
+    >
+      <p className="text-lg font-semibold">Sedang offline</p>
+      <p className="mt-1 max-w-xs text-sm">
+        Task belum tersedia tanpa koneksi. Daftar akan dimuat saat internet
+        kembali.
+      </p>
+    </div>
+  );
 }
 
 function LoadingState() {

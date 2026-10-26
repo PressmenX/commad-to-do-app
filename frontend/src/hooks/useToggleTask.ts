@@ -13,6 +13,7 @@ export function useToggleTask() {
   const mutation = useMutation({
     mutationFn: ({ id, isCompleted }: ToggleTaskPayload) =>
       taskApi.updateTask(id, { isCompleted }),
+    networkMode: "always",
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ["tasks"] });
     },

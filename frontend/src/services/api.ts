@@ -51,7 +51,17 @@ api.interceptors.response.use(
       await refreshPromise;
       return api.request(request);
     } catch (refreshError) {
-      window.dispatchEvent(new Event("auth:unauthorized"));
+      if (
+        refreshError &&
+        typeof refreshError === "object" &&
+        "response" in refreshError &&
+        refreshError.response &&
+        typeof refreshError.response === "object" &&
+        "status" in refreshError.response &&
+        refreshError.response.status === 401
+      ) {
+        window.dispatchEvent(new Event("auth:unauthorized"));
+      }
       return Promise.reject(refreshError);
     }
   },

@@ -8,7 +8,9 @@ export function useGetTask() {
   return useQuery({
     queryKey: ["tasks"],
     queryFn: taskApi.getTasks,
-    enabled: isLoggedIn, 
+    enabled: isLoggedIn,
     retry: false,
+    networkMode: "online",
+    refetchOnReconnect: true,
   });
 }

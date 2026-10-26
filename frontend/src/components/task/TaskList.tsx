@@ -9,6 +9,7 @@ import BulkActionBar from "./BulkActionBar";
 import TaskListContent from "./TaskListContent";
 import TaskListToolbar from "./TaskListToolbar";
 import { useBulkTaskActions } from "../../hooks/useBulkTaskActions";
+import { useOnlineStatus } from "../../hooks/useOnlineStatus";
 
 type ViewMode = "card" | "list" | "table";
 const VALID_MODES: ViewMode[] = ["card", "list", "table"];
@@ -19,6 +20,7 @@ interface TaskListProps {
 
 export default function TaskList({ onBulkModeChange }: TaskListProps) {
   const { data: tasks = [], isLoading, isError, error } = useGetTask();
+  const isOnline = useOnlineStatus();
   const [savedMode, setSavedMode] = useLocalStorage<ViewMode>(
     "task_view_mode",
     "card",
@@ -62,6 +64,7 @@ export default function TaskList({ onBulkModeChange }: TaskListProps) {
         viewMode={viewMode}
         isLoading={isLoading}
         isError={isError}
+        isOffline={!isOnline}
         errorMessage={error?.message}
         isBulkMode={bulkActions.isBulkMode}
         selectedIds={bulkActions.selectedIds}

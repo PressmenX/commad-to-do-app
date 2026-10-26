@@ -6,6 +6,7 @@ export function useDeleteTask() {
 
   const mutation = useMutation({
     mutationFn: (id: string) => taskApi.deleteTask(id),
+    networkMode: "always",
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ["tasks"] });
     },

@@ -27,6 +27,7 @@ export default NiceModal.create(() => {
 
   const addTaskMutation = useMutation({
     mutationFn: (newTask: ICreateTask) => taskApi.addTask(newTask),
+    networkMode: "always",
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ["tasks"] });
       setSuccess(true);

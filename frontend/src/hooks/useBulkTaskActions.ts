@@ -2,7 +2,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import NiceModal from "@ebay/nice-modal-react";
 import { useState } from "react";
 import type { ITask } from "../index";
-import { taskApi } from "../services/taskApi";
+import { notifyOfflineTaskAction, taskApi } from "../services/taskApi";
 import ConfirmDeleteModal from "../components/task/modal/ConfirmDeleteModal";
 
 export function useBulkTaskActions(tasks: ITask[], visibleTasks: ITask[]) {
@@ -59,6 +59,11 @@ export function useBulkTaskActions(tasks: ITask[], visibleTasks: ITask[]) {
     action: (task: ITask) => Promise<unknown>,
     failureMessage: string,
   ) => {
+    if (!navigator.onLine) {
+      notifyOfflineTaskAction();
+      return;
+    }
+
     const selectedTasks = tasks.filter((task) => selectedIdSet.has(task.id));
     setIsProcessing(true);
 
@@ -68,7 +73,9 @@ export function useBulkTaskActions(tasks: ITask[], visibleTasks: ITask[]) {
         (_, index) => results[index].status === "rejected",
       );
 
-      await queryClient.invalidateQueries({ queryKey: ["tasks"] });
+      if (navigator.onLine) {
+        await queryClient.invalidateQueries({ queryKey: ["tasks"] });
+      }
       setSelectedIds((currentIds) => [
         ...currentIds.filter(
           (id) => taskIds.has(id) && !selectedIdSet.has(id),
