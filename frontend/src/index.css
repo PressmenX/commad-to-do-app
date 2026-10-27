@@ -25,6 +25,43 @@
   --color-error-content: #ffffff;
 }
 
+html {
+  background-color: var(--color-base-100);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100dvh;
+  background-color: var(--color-base-100);
+}
+
+body::before,
+body::after {
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  right: 0;
+  background: rgb(0 0 0 / 50%);
+  content: "";
+  pointer-events: none;
+}
+
+body::before {
+  top: 0;
+  height: env(safe-area-inset-top, 0px);
+}
+
+body::after {
+  bottom: 0;
+  height: env(safe-area-inset-bottom, 0px);
+}
+
+@utility safe-area-screen {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
 @utility btn-glass {
   @apply rounded-xl transition-all duration-500
          backdrop-blur-lg shadow-md shadow-black/10

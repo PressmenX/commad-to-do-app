@@ -15,7 +15,7 @@ function RequireAuth({ children }: { children: React.ReactNode }) {
   if (isLoading) {
     return (
       <div
-        className="flex min-h-dvh items-center justify-center"
+        className="safe-area-screen flex min-h-dvh items-center justify-center"
         role="status"
         aria-label="Checking session"
       >
@@ -26,7 +26,7 @@ function RequireAuth({ children }: { children: React.ReactNode }) {
 
   if (sessionStatus === "unknown") {
     return (
-      <div className="flex min-h-dvh flex-col items-center justify-center gap-4 p-6 text-center">
+      <div className="safe-area-screen flex min-h-dvh flex-col items-center justify-center gap-4 p-6 text-center">
         <h1 className="text-xl font-bold">Tidak dapat memastikan sesi</h1>
         <p className="max-w-sm text-base-content/70">
           {isOnline

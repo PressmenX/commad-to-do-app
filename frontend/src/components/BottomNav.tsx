@@ -5,7 +5,7 @@ import AddTaskModal from "./task/modal/AddTaskModal";
 
 export default function BottomNav() {
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-base-100 border-t border-base-300 shadow-[0_-4px_30px_rgba(0,0,0,0.15)] z-50">
+    <div className="fixed bottom-0 left-0 right-0 bg-base-100 border-t border-base-300 pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_30px_rgba(0,0,0,0.15)] z-50">
       <div className="flex justify-between items-center h-16 relative px-12">
         <Link
           to="/main"

@@ -9,7 +9,7 @@ export default function StartMenu() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex min-h-dvh w-full flex-col px-6 py-6 font-sans sm:py-8 bg-brand-gradient">
+    <div className="safe-area-screen flex min-h-dvh w-full flex-col px-6 py-6 font-sans sm:py-8 bg-brand-gradient">
       <div className="flex flex-1 flex-col items-center justify-center">
         <h1 className="text-3xl text-surface font-bold mb-5">Command Todo</h1>
         <div className="flex items-center justify-center p-6 m-8 bg-white rounded-full">
