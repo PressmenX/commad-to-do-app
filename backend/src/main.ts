@@ -6,12 +6,12 @@ import { HttpErrorFilter } from './core/filters/http-error/http-error.filter';
 import { TransformInterceptor } from './core/interceptors/transform/transform.interceptor';
 import { ValidationPipe } from '@nestjs/common';
 import cookieParser from 'cookie-parser';
+import type { Request, Response } from 'express';
 
-async function bootstrap() {
+async function createApp() {
   const app = await NestFactory.create(AppModule, {
     bufferLogs: true,
   });
-  const configService = app.get(ConfigService);
 
   app.enableCors({
     origin: true,
@@ -29,8 +29,30 @@ async function bootstrap() {
   app.useLogger(app.get(Logger));
   app.useGlobalFilters(new HttpErrorFilter());
   app.useGlobalInterceptors(new TransformInterceptor());
-  app.enableShutdownHooks();
+  await app.init();
 
+  return app;
+}
+
+let appPromise: ReturnType<typeof createApp> | undefined;
+
+function getApp() {
+  appPromise ??= createApp();
+  return appPromise;
+}
+
+export default async function handler(req: Request, res: Response) {
+  const app = await getApp();
+  app.getHttpAdapter().getInstance()(req, res);
+}
+
+async function bootstrap() {
+  const app = await getApp();
+  const configService = app.get(ConfigService);
+  app.enableShutdownHooks();
   await app.listen(configService.get('PORT') ?? 3000);
 }
-void bootstrap();
+
+if (process.env.VERCEL !== '1') {
+  void bootstrap();
+}

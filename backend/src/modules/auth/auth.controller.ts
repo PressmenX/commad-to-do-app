@@ -9,12 +9,12 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
-import { LocalAuthGuard } from '@/common/guard/local-auth.guard';
-import { CurrentUser } from '@/common/decorators/current-user.decorator';
+import { LocalAuthGuard } from '../../common/guard/local-auth.guard';
+import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { UserResponseDto } from '../../common/dto/user-response.dto';
 import { Request, Response } from 'express';
 import { ConfigService } from '@nestjs/config';
-import { JwtAuthGuard } from '@/common/guard/jwt-auth.guard';
+import { JwtAuthGuard } from '../../common/guard/jwt-auth.guard';
 
 @Controller('auth')
 export class AuthController {

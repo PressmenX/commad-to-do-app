@@ -1,4 +1,4 @@
-import { PrismaService } from '@/modules/prisma/prisma.service';
+import { PrismaService } from '../../prisma/prisma.service';
 import { customAlphabet } from 'nanoid';
 
 const ALPHABET = '1234567890abcdefghijklmnopqrstuvwxyz';
