@@ -18,7 +18,7 @@ export default defineConfig({
         name: "Command Todo App",
         short_name: "CmdTodo",
         description: "Keyboard-first task management for focused minds.",
-        theme_color: "#f77456",
+        theme_color: "#ffffff",
         background_color: "#ffffff",
         display: "standalone",
         icons: [

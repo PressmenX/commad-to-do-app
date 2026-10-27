@@ -8,6 +8,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import NiceModal from "@ebay/nice-modal-react";
 import ConfirmDeleteModal from "../components/task/modal/ConfirmDeleteModal";
 import BottomNav from "../components/BottomNav";
+import { applyTheme } from "../utils/theme";
 
 export default function SettingMenu() {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ export default function SettingMenu() {
   const completedTasks = tasks.filter((t) => t.isCompleted);
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
+    applyTheme(theme);
   }, [theme]);
 
   const handleToggleTheme = () => {
