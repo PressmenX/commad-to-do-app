@@ -20,7 +20,8 @@ export default defineConfig({
         description: "Keyboard-first task management for focused minds.",
         theme_color: "#ffffff",
         background_color: "#ffffff",
-        display: "standalone",
+        display_override: ["fullscreen", "standalone"],
+        display: "fullscreen",
         icons: [
           {
             src: "/pwa-192x192.png",
