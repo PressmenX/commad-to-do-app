@@ -11,14 +11,18 @@ export default function StartMenu() {
   const navigate = useNavigate();
 
   return (
-    <div className="safe-area-screen flex min-h-dvh w-full flex-col px-6 py-6 font-sans sm:py-8 bg-brand-gradient">
+    <div className="safe-area-screen flex h-dvh w-full flex-col overflow-hidden px-6 py-4 font-sans sm:py-8 bg-brand-gradient">
       <div className="flex flex-1 flex-col items-center justify-center">
-        <h1 className="text-3xl text-surface font-bold mb-5">Command Todo</h1>
-        <div className="flex items-center justify-center p-6 m-8 bg-white rounded-full">
-          <img src="/pwa-512x512.png" alt="" className="w-20 h-20 rounded-xl" />
+        <h1 className="text-3xl text-surface font-bold mb-4">Command Todo</h1>
+        <div className="flex items-center justify-center p-5 my-4 sm:p-6 sm:my-8 bg-white rounded-full">
+          <img
+            src="/pwa-512x512.png"
+            alt=""
+            className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl"
+          />
         </div>
 
-        <p className="text-xl text-surface font-bold text-center leading-relaxed px-4 mb-5">
+        <p className="text-xl text-surface font-bold text-center leading-relaxed px-4 mb-4">
           Keyboard-first task management for focused minds.
         </p>
 
@@ -79,7 +83,7 @@ export default function StartMenu() {
         )}
       </div>
 
-      <p className="bottom-1 left-1 absolute text-center text-xs text-surface/70 bg-black/30 py-1 px-2 rounded-xl">
+      <p className="bottom-1 left-1 absolute text-center text-xs text-surface/70 bg-black/20 py-1 px-2 rounded-xl">
         version {__APP_VERSION__}
       </p>
     </div>
