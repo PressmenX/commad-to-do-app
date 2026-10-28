@@ -22,6 +22,9 @@ export default defineConfig({
         navigateFallbackDenylist: [/^\/api/, /^\/auth/, /^\/task/],
         globPatterns: ["**/*.{js,css,html,ico,png,svg,json}"],
       },
+      devOptions: {
+        enabled: true
+      },
       manifest: {
         name: "Command Todo App",
         short_name: "CmdTodo",
