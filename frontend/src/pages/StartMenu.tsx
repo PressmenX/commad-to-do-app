@@ -3,7 +3,7 @@ import NiceModal from "@ebay/nice-modal-react";
 import AuthModal from "../components/auth/AuthModal";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router";
-import "./../../app-version.d.ts"
+import "./../../app-version.d.ts";
 export default function StartMenu() {
   const { isLoggedIn, isLoading, sessionStatus, retrySessionCheck } = useAuth();
   const isCheckingSession = sessionStatus === "unknown" && isLoading;
@@ -28,7 +28,7 @@ export default function StartMenu() {
         </p>
       </div>
 
-      <div className="w-72 min-h-32 flex flex-col items-center gap-6 pb-2 mx-auto">
+      <div className="w-72 min-h-32 flex flex-col items-center gap-6 pb-2 mx-auto mb-8">
         {isCheckingSession ? (
           <div
             role="status"
@@ -50,7 +50,7 @@ export default function StartMenu() {
         ) : isLoggedIn ? (
           <button
             onClick={() => navigate("/main")}
-            className="btn btn-block bg-surface text-primary rounded-full text-lg font-semibold h-12 min-h-12 flex items-center justify-center group transition-all duration-300 hover:bg-gray-50 active:bg-gray-100 active:scale-[0.98] border-0 hover:shadow-[0_0_24px_4px_rgba(255,255,255,0.4)]"
+            className="btn btn-block bg-surface text-primary rounded-full text-lg font-semibold mt-4 h-12 min-h-12 flex items-center justify-center group transition-all duration-300 hover:bg-gray-50 active:bg-gray-100 active:scale-[0.98] border-0 hover:shadow-[0_0_24px_4px_rgba(255,255,255,0.4)]"
           >
             Start Your Task
             <ArrowRight className="w-5 h-5 ml-1 transition-transform duration-300 group-hover:translate-x-4" />
@@ -79,7 +79,7 @@ export default function StartMenu() {
         )}
       </div>
 
-      <p className="bottom-2 left-2 absolute text-center text-xs text-surface/70 bg-black/30 py-1 px-2 rounded-xl">
+      <p className="bottom-1 left-1 absolute text-center text-xs text-surface/70 bg-black/30 py-1 px-2 rounded-xl">
         version {__APP_VERSION__}
       </p>
     </div>
