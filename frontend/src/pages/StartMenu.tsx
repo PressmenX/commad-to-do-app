@@ -11,7 +11,7 @@ export default function StartMenu() {
   const navigate = useNavigate();
 
   return (
-    <div className="fixed inset-0 overflow-y-auto overscroll-y-none bg-brand-gradient font-sans">
+    <div className="fixed inset-0 overflow-y-auto  bg-brand-gradient font-sans">
       <div className="flex min-h-full w-full flex-col px-6 py-6 sm:py-8">
         <div className="flex flex-1 flex-col items-center justify-center">
           <h1 className="text-3xl text-surface font-bold mb-4">Command Todo</h1>
