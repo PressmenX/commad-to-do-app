@@ -1,8 +1,8 @@
 export type AppTheme = "light" | "dark";
 
 const themeColors: Record<AppTheme, string> = {
-  light: "rgba(255, 255, 255, 0.5)",
-  dark: "rgba(29, 35, 42, 0.5)",
+  light: "#ffffff",
+  dark: "#1d232a",
 };
 
 export function applyTheme(theme: AppTheme) {
