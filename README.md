@@ -24,11 +24,7 @@ A full-stack to-do list app built as an installable Progressive Web App (PWA). T
 - **Progress Overview**: A progress card shows completed vs. total tasks with a percentage, plus the number of pending tasks per priority.
 - **Settings**: Toggle dark or light theme, clear all completed tasks, and log out.
 - **Installable PWA**: Can be installed on a phone or desktop. The service worker updates the app automatically. An offline banner appears when there is no connection, and task changes are blocked with a clear notice while offline.
-- **Input Validation**: Request payloads are validated with `class-validator`. Unknown fields are rejected.
-- **Centralized Error Handling & Response Format**: A global exception filter and response interceptor keep API responses uniform.
 - **Structured Logging**: HTTP and application logs through `pino`.
-- **Health Check**: A simple endpoint to check that the API is running.
-- **Serverless Deployment**: The backend runs as a serverless function on Vercel and connects to a serverless PostgreSQL database (Neon) through Prisma's driver adapter.
 - **Developer Test Panel**: In development mode only, a panel for testing login and task requests, viewing an on-screen console, and generating fake tasks with Faker.
 
 ## 🤖 Application of AI
