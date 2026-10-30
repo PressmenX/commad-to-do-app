@@ -1,6 +1,7 @@
 # Command Todo
 
 [![Repo](https://img.shields.io/badge/github-repo-blue?logo=github)](https://github.com/PressmenX/commad-to-do-app)
+[![Demo](https://img.shields.io/badge/vercel-demo-darkgreen?logo=vercel)](https://command-to-do.vercel.app/)
 
 A full-stack to-do list app built as an installable Progressive Web App (PWA). The frontend is built with React and Vite, backed by a NestJS REST API with PostgreSQL and Prisma.
 
